@@ -11,3 +11,6 @@ spec:
     path: argocd
     repoURL: https://github.com/mattsve/k8s
     targetRevision: HEAD
+  syncPolicy:
+    automated:
+      selfHeal: true

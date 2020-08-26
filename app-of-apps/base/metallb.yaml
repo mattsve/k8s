@@ -11,3 +11,7 @@ spec:
     path: metallb
     repoURL: https://github.com/mattsve/k8s
     targetRevision: HEAD
+  syncPolicy:
+    automated: 
+      prune: true
+      selfHeal: true
