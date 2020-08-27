@@ -1,0 +1,6 @@
+etcd:
+    auth:
+        rbac:
+            existingSecret: etcd
+    persistence:
+        enabled: false
