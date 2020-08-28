@@ -4,3 +4,6 @@ kind: Kustomization
 bases:
     - github.com/kubernetes-sigs/external-dns/kustomize?ref=v0.7.3    
 namespace: kube-system
+
+patchesStrategicMerge:
+    - custom-env.yaml
