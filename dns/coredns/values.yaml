@@ -37,7 +37,7 @@ coredns:
           - name: reload
           - name: loadbalance
           - name: etcd
-            parameters: k3s.hem.ingenstans.se
+            parameters: k3s.ingenstans.se
             configBlock: |-
                 stubzones
                 path /skydns
