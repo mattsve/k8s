@@ -7,6 +7,8 @@ spec:
     spec:
       containers:
         - name: external-dns
+          args:
+            - --provider=coredns
           env:
             - name: ETCD_URLS
               value: http://etcd.dns.svc.cluster.local:2379
