@@ -8,6 +8,9 @@ spec:
       containers:
         - name: external-dns
           args:
+            - --source=service
+            - --source=ingress
+            - --registry=txt
             - --provider=coredns
           env:
             - name: ETCD_URLS
