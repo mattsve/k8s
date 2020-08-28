@@ -6,5 +6,6 @@ bases:
 
 resources:
     - base/namespace.yaml
+    - base/ingress.yaml
     
 namespace: argocd
