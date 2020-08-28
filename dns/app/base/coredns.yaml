@@ -11,7 +11,7 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: dns/coredns-app
+    path: dns/coredns
     repoURL: https://github.com/mattsve/k8s
     targetRevision: HEAD
   syncPolicy:
