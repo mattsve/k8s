@@ -39,5 +39,5 @@ coredns:
             configBlock: |-
                 stubzones
                 path /skydns
-                endpoint: http://etcd:2379
+                endpoint http://etcd:2379
           
