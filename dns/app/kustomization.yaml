@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
     - base/namespace.yaml
     - base/etcd.yaml
+    - base/coredns.yaml
