@@ -15,4 +15,5 @@ patchesJson6902:
           group: apps
           kind: Deployment
           name: cert-manager
+          namespace: cert-manager
           version: v1
