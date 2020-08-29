@@ -5,4 +5,3 @@ resources:
     - base/argocd.yaml
     - base/metallb.yaml
     - base/dns.yaml
-    - base/cert-manager.yaml
