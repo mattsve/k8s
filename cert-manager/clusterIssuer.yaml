@@ -11,7 +11,8 @@ spec:
             name: letsencrypt-prod-account-key
         solvers:
             - dns01:
-                cloudflare: cloudflare@ingenstans.se
-                apiTokenSecretRef:
-                    name: cloudflare-api-token
-                    key: api-token
+                cloudflare: 
+                    email: cloudflare@ingenstans.se
+                    apiTokenSecretRef:
+                        name: cloudflare-api-token
+                        key: api-token
