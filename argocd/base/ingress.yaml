@@ -4,6 +4,7 @@ metadata:
   name: argocd-server-http-ingress
   namespace: argocd
   annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
   rules:
   - http:
@@ -12,3 +13,7 @@ spec:
           serviceName: argocd-server
           servicePort: http
     host: argocd.k3s.ingenstans.se
+  tls:
+    - hosts:
+      - argocd.k3s.ingenstans.se
+      secretName: argocd-server-http-ingress-cert
