@@ -4,6 +4,7 @@ kind: Kustomization
 namespace: mosquitto
 
 resources:
+  - namespace.yaml
   - deployment.yaml
 
 configMapGenerator:
