@@ -29,7 +29,7 @@ spec:
             - name: config
               mountPath: /mosquitto/config/mosquitto.conf
               subPath: mosquitto.conf
-    volumes:
-      - name: config
-        configMap:
-          name: mosquitto
+      volumes:
+        - name: config
+          configMap:
+            name: mosquitto
