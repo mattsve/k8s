@@ -7,5 +7,5 @@ spec:
   dnsNames:
     - mosquitto.k3s.ingenstans.se
   issuerRef:
-    - name: letsencrypt-prod
-      kind: ClusterIssuer
+    name: letsencrypt-prod
+    kind: ClusterIssuer
