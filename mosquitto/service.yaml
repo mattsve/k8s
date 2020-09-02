@@ -11,4 +11,17 @@ spec:
     - protocol: TCP
       port: 1883
       targetPort: 1883
+      name: mqtt
+    - protocol: TCP
+      port: 8883
+      targetPort: 8883
+      name: mqtt-tls
+    - protocol: TCP
+      port: 9001
+      targetPort: 9001
+      name: websocket
+    - protocol: TCP
+      port: 9883
+      targetPort: 9883
+      name: websocket-tls
   type: LoadBalancer
