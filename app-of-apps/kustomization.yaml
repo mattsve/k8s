@@ -7,3 +7,4 @@ resources:
     - base/dns.yaml
     - base/cert-manager.yaml
     - base/mosquitto.yaml
+    - base/reloader.yaml

@@ -5,6 +5,7 @@ metadata:
   labels:
     app: mosquitto
     app.kubernetes.io/name: mosquitto
+    reloader.stakater.com/auto: "true"
 spec:
   replicas: 1
   selector:
@@ -14,7 +15,7 @@ spec:
     metadata:
       labels:
         app: mosquitto
-        app.kubernetes.io/name: mosquitto
+        app.kubernetes.io/name: mosquitto        
     spec:
       containers:
         - name: mosquitto
