@@ -7,3 +7,10 @@ mqtt:
 
 sensor_name_map:
   "5202_ed01": "outdoor"
+  "5209_8700": "livingroom"
+  "5209_c700": "greenhouse"
+  "5209_9700": "root cellar"
+  "5209_b700": "bedroom"
+  "5209_d700": "shed"
+  "5209_e700": "kitchen"
+  
