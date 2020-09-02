@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: mosquitto
   annotations:
-    external-dns.alpha.kubernetes.io/hostname: mosquitto.k3s.ingenstans.se.
+    external-dns.alpha.kubernetes.io/hostname: mqtt.k3s.ingenstans.se.
 spec:
   selector:
     app: mosquitto

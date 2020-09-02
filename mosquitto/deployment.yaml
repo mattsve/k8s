@@ -42,5 +42,5 @@ spec:
             name: mosquitto
         - name: tls
           secret:
-            secretName: mosquitto-k3s-ingenstans-se-tls
+            secretName: mqtt-k3s-ingenstans-se-tls
 
