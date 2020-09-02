@@ -5,7 +5,6 @@ metadata:
   labels:
     app: rfxtrx2mqtt
     app.kubernetes.io/name: rfxtrx2mqtt
-    reloader.stakater.com/auto: "true"
 spec:
   replicas: 1
   selector:
@@ -21,6 +20,9 @@ spec:
         - name: rfxtrx2mqtt
           image: ghcr.io/mattsve/rfxtrx2mqtt:0.0.1
           imagePullPolicy: IfNotPresent
+          args:
+            - "--config-file"
+            - "/config/rfxtrx2mqtt.yaml"
           volumeMounts:
             - name: config
               mountPath: /config/rfxtrx2mqtt.yaml
