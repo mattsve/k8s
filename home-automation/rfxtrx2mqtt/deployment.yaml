@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rfxtrx2mqtt
+  labels:
+    app: rfxtrx2mqtt
+    app.kubernetes.io/name: rfxtrx2mqtt
+    reloader.stakater.com/auto: "true"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rfxtrx2mqtt
+  template:
+    metadata:
+      labels:
+        app: rfxtrx2mqtt
+        app.kubernetes.io/name: rfxtrx2mqtt        
+    spec:
+      containers:
+        - name: rfxtrx2mqtt
+          image: ghcr.io/mattsve/rfxtrx2mqtt:0.0.1
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - name: config
+              mountPath: /config/rfxtrx2mqtt.yaml
+              subPath: rfxtrx2mqtt.yaml
+            - name: rfxtrx-device
+              mountPath: /dev/serial/by-id/usb-RFXCOM_RFXtrx433_A129KKXK-if00-port0
+          securityContext:
+            privileged: true
+      volumes:
+        - name: config
+          configMap:
+            name: rfxtrx2mqtt
+        - name: rfxtrx-device
+          hostPath:
+            path: /dev/serial/by-id/usb-RFXCOM_RFXtrx433_A129KKXK-if00-port0
+    nodeSelector:
+      rfxtrx: "true"

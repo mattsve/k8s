@@ -1,0 +1,9 @@
+rfxtrx:
+  device: "/dev/serial/by-id/usb-RFXCOM_RFXtrx433_A129KKXK-if00-port0"
+
+mqtt:
+  broker_host: mqtt.mosquitto
+  broker_port: 1883
+
+sensor_name_map:
+  "5202_ed01": "outdoor"
