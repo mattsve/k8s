@@ -10,7 +10,7 @@ resources:
     - cloudflare-api-token.yaml
 
 patchesJson6902:
-    - path: recursive-nameservers.yaml
+    - path: recursive-nameservers-patch.yaml
       target:
           group: apps
           kind: Deployment

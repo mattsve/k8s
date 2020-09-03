@@ -32,4 +32,4 @@ jobs:
           helmv3: 3.0.0
           command: |
             echo "Run kubeval"
-            find . -name '*.yaml' -print0 | xargs -0 -n1 kubeval --force-color --strict --ignore-missing-schemas
+            find . -name '*.yaml' -a -not -name '*-patch.yaml' -print0 | xargs -0 -n1 kubeval --force-color --strict --ignore-missing-schemas

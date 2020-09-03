@@ -9,7 +9,7 @@ resources:
     - base/ingress.yaml
     
 patchesJson6902:
-  - path: argocd-server-deploy-command.yaml
+  - path: argocd-server-deploy-command-patch.yaml
     target:
         group: apps
         kind: Deployment
