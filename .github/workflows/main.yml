@@ -27,7 +27,7 @@ jobs:
         uses: stefanprodan/kube-tools@v1.5.0
         with:
           kubectl: 1.18.8
-          kustomize: 3.4.0
+          kustomize: 3.8.2
           helm: 2.16.1
           helmv3: 3.0.0
           command: |
