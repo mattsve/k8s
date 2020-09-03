@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: rfxtrx2mqtt
-          image: ghcr.io/mattsve/rfxtrx2mqtt:0.0.1
+          image: ghcr.io/mattsve/rfxtrx2mqtt:0.1
           imagePullPolicy: IfNotPresent
           args:
             - "--config-file"
