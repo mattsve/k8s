@@ -4,4 +4,3 @@ kind: Kustomization
 resources:
     - base/namespace.yaml
     - base/rfxtrx2mqtt.yaml
-    - base/zwave2mqtt.yaml
