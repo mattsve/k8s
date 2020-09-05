@@ -1,0 +1,18 @@
+[
+    null,
+    {},
+    { "name": "projector"},
+    { "name": "livingroom_ceiling" },
+    { "name": "diningroom_window"},
+    { "name": "livingroom_window" },
+    { "name": "3d_printer"},
+    { "name": "aquarium_100l"},
+    { "name": "diningroom_corner" },
+    null,
+    { "name": "washing_machine" },
+    { "name": "dryer" },
+    null,
+    { "name": "bedroom_window" },
+    { "name": "waterpump" },
+    {}
+]

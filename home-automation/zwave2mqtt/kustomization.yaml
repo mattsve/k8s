@@ -7,5 +7,13 @@ resources:
   - deployment.yaml
   - service.yaml
   - ingress.yaml
+  - secret.yaml
 
-
+  configMapGenerator:
+    - name: zwave
+      files:
+        - settings.json.tmpl
+        - nodes.json
+      options:
+        labels:
+          app.kubernetes.io/name: zwave
