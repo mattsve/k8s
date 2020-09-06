@@ -22,7 +22,7 @@ spec:
               mountPath: /templates
             - name: data
               mountPath: /data
-          command: ["sh" "-c"]
+          command: ["sh", "-c"]
           args:
             - gomplate -d secrets=/secrets < /templates/settings.json.tmpl > /data/settings.json
       containers:
