@@ -59,7 +59,7 @@ spec:
               name: zwavestick
             - mountPath: /usr/src/app/store
               name: data
-            - mountPath: /ysr/src/app/store/nodes.json
+            - mountPath: /usr/src/app/store/nodes.json
               name: config
               subPath: nodes.json
       nodeSelector:
