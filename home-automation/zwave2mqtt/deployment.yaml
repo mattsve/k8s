@@ -74,3 +74,6 @@ spec:
         - name: config
           configMap:
             name: zwave
+        - name: secrets
+          secret:
+            secretName: zwave
