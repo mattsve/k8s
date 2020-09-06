@@ -9,11 +9,11 @@ resources:
   - ingress.yaml
   - secret.yaml
 
-  configMapGenerator:
-    - name: zwave
-      files:
-        - settings.json.tmpl
-        - nodes.json
-      options:
-        labels:
-          app.kubernetes.io/name: zwave
+configMapGenerator:
+  - name: zwave
+    files:
+      - settings.json.tmpl
+      - nodes.json
+    options:
+      labels:
+        app.kubernetes.io/name: zwave
