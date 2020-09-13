@@ -1,0 +1,82 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deconz
+  labels:
+    app: deconz
+    app.kubernetes.io/name: deconz
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: deconz
+  template:
+    metadata:
+      labels:
+        app: deconz
+        app.kubernetes.io/name: deconz 
+    spec:
+      initcontainers:
+        - name: init-borg
+          image: ghcr.io/mattsve/borgmatic:0.1
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - name: deconz
+              mountPath: /data
+          env:
+            - name: TZ
+              value: Europe/Stockholm
+            - name: REPOSITORY
+              valueFrom:
+                secretKeyRef:
+                  name: deconz
+                  key: borg-repo
+            - name: PASSPHRASE
+              valueFrom:
+                secretKeyRef:
+                  name: deconz
+                  key: borg-passphrase
+          args:
+            - restore
+            - -r
+            - "$(REPOSITORY)"
+            - -p 
+            - "$(PASSPHRASE)"
+            - -a 
+            - deconz
+            - /data
+      containers:
+        - name: deconz
+          image: marthoc/deconz:aarch64-2.05.80
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: TZ
+              value: Europe/Stockholm
+            - name: DECONZ_DEVICE
+              value: /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2152763-if00
+            - name: DECONZ_WS_PORT
+              value: 8080
+            - name: DECONZ_VNC_MODE
+              value: 1
+            - name: DECONZ_VNC_PORT
+              value: 5900
+            - name: DECONZ_VNC_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: deconz
+                  key: vnc-password
+          volumeMounts:
+            - name: deconz
+              mountPath: /root/.local/share/dresden-elektronik/deCONZ
+            - name: conbee-device
+              mountPath: /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2152763-if00
+          securityContext:
+            privileged: true
+      volumes:
+        - name: deconz
+          emptyDir: {}
+        - name: conbee-device
+          hostPath:
+            path: /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2152763-if00
+      nodeSelector:
+        conbee: "true"
