@@ -16,7 +16,7 @@ spec:
         app: deconz
         app.kubernetes.io/name: deconz 
     spec:
-      initcontainers:
+      initContainers:
         - name: init-borg
           image: ghcr.io/mattsve/borgmatic:0.1
           imagePullPolicy: IfNotPresent
