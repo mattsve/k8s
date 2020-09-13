@@ -50,7 +50,7 @@ spec:
             - /data
       containers:
         - name: deconz
-          image: marthoc/deconz:aarch64-2.05.80
+          image: marthoc/deconz:amd64-2.05.80
           imagePullPolicy: IfNotPresent
           env:
             - name: TZ
