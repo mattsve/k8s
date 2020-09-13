@@ -44,7 +44,7 @@ spec:
             - -r
             - "$(REPOSITORY)"
             - -p 
-            - "$(PASSPHRASE)"
+            - "'$(PASSPHRASE)''"
             - -a 
             - deconz
             - /data
