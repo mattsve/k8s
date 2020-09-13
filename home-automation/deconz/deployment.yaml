@@ -42,9 +42,9 @@ spec:
           args:
             - restore
             - -r
-            - "$(REPOSITORY)"
+            - "'$(REPOSITORY)'"
             - -p 
-            - "'$(PASSPHRASE)''"
+            - "'$(PASSPHRASE)'"
             - -a 
             - deconz
             - /data
