@@ -55,11 +55,11 @@ spec:
             - name: DECONZ_DEVICE
               value: /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2152763-if00
             - name: DECONZ_WS_PORT
-              value: 8080
+              value: "8080"
             - name: DECONZ_VNC_MODE
-              value: 1
+              value: "1"
             - name: DECONZ_VNC_PORT
-              value: 5900
+              value: "5900"
             - name: DECONZ_VNC_PASSWORD
               valueFrom:
                 secretKeyRef:
