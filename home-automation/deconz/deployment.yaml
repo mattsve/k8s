@@ -50,19 +50,19 @@ spec:
             - /data
         - name: inject-secrets
           image: hairyhenderson/gomplate:v3.8.0-alpine
-            volumeMounts:
-              - name: backup-templates
-                mountPath: /templates
-              - name: backup-config
-                mountPath: /config
-              - name: backup-secrets
-                mountPath: /secrets
-            env:
-              - name: TZ
-                value: Europe/Stockholm
-            command: ["sh", "-c"]
-            args:
-              - gomplate -d secrets=/secrets < /templates/crontab.tmpl > /config/crontab
+          volumeMounts:
+            - name: backup-templates
+              mountPath: /templates
+            - name: backup-config
+              mountPath: /config
+            - name: backup-secrets
+              mountPath: /secrets
+          env:
+            - name: TZ
+              value: Europe/Stockholm
+          command: ["sh", "-c"]
+          args:
+            - gomplate -d secrets=/secrets < /templates/crontab.tmpl > /config/crontab
       containers:
         - name: deconz
           image: marthoc/deconz:amd64-2.05.80
@@ -129,13 +129,14 @@ spec:
                 mode: 0644
                 path: known_hosts
         - name: backup-secrets
-              secretName: deconz
-              items:
-                - key: borg-repo
-                  mode: 0400
-                  path: borg-repo
-                - key: borg-passphrase
-                  mode: 0400
-                  path: borg-passphrase
+          secret:
+            secretName: deconz
+            items:
+              - key: borg-repo
+                mode: 0400
+                path: borg-repo
+              - key: borg-passphrase
+                mode: 0400
+                path: borg-passphrase
       nodeSelector:
         conbee: "true"
