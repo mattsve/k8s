@@ -108,7 +108,7 @@ spec:
         - name: deconz
           emptyDir: {}
         - name: backup-config
-          emptydir: {}
+          emptyDir: {}
         - name: backup-templates
           configMap:
             name: deconz-backup-templates
