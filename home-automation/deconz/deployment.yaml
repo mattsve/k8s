@@ -18,7 +18,7 @@ spec:
     spec:
       initContainers:
         - name: init-borg
-          image: ghcr.io/mattsve/borgmatic:0.1
+          image: ghcr.io/mattsve/borgmatic:0.3
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - name: deconz
@@ -48,6 +48,21 @@ spec:
             - -a 
             - deconz
             - /data
+        - name: inject-secrets
+          image: hairyhenderson/gomplate:v3.8.0-alpine
+            volumeMounts:
+              - name: backup-templates
+                mountPath: /templates
+              - name: backup-config
+                mountPath: /config
+              - name: backup-secrets
+                mountPath: /secrets
+            env:
+              - name: TZ
+                value: Europe/Stockholm
+            command: ["sh", "-c"]
+            args:
+              - gomplate -d secrets=/secrets < /templates/crontab.tmpl > /config/crontab
       containers:
         - name: deconz
           image: marthoc/deconz:amd64-2.05.80
@@ -75,9 +90,28 @@ spec:
               mountPath: /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2152763-if00
           securityContext:
             privileged: true
+        - name: cron-borg
+          image: ghcr.io/mattsve/borgmatic:0.3
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - name: deconz
+              mountPath: /data
+            - name: backup-config
+              mountPath: /config
+          env:
+            - name: TZ
+              value: Europe/Stockholm
+          args:
+            - cron
+            - /config/crontab
       volumes:
         - name: deconz
           emptyDir: {}
+        - name: backup-config
+          emptydir: {}
+        - name: backup-templates
+          configMap:
+            name: deconz-backup-templates
         - name: conbee-device
           hostPath:
             path: /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2152763-if00
@@ -94,5 +128,14 @@ spec:
               - key: known_hosts
                 mode: 0644
                 path: known_hosts
+        - name: backup-secrets
+              secretName: deconz
+              items:
+                - key: borg-repo
+                  mode: 0400
+                  path: borg-repo
+                - key: borg-passphrase
+                  mode: 0400
+                  path: borg-passphrase
       nodeSelector:
         conbee: "true"
