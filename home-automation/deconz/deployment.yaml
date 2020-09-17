@@ -98,6 +98,9 @@ spec:
               mountPath: /data
             - name: backup-config
               mountPath: /config
+            - name: secrets
+              mountPath: /root/.ssh
+              readOnly: true
           env:
             - name: TZ
               value: Europe/Stockholm
