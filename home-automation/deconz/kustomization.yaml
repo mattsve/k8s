@@ -7,11 +7,11 @@ resources:
   - deployment.yaml
   - service.yaml
   - secret.yaml
-
-  configMapGenerator:
-    - name: deconz-backup-templates
-      files:
-        - crontab.tmpl
-      options:
-        labels:
-          app.kubernetes.io/name: deconz
+  
+configMapGenerator:
+  - name: deconz-backup-templates
+    files:
+      - crontab.tmpl
+    options:
+      labels:
+        app.kubernetes.io/name: deconz
