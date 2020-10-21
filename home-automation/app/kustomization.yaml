@@ -7,3 +7,4 @@ resources:
     - base/zwave2mqtt.yaml
     - base/deconz.yaml
     - base/node-red.yaml
+    
