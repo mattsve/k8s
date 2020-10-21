@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: node-red-ingress
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    traefik.ingress.kubernetes.io/redirect-entry-point: https
+spec:
+  rules:
+  - http:
+      paths:
+      - backend:
+          serviceName: node-red
+          servicePort: http
+    host: node-red.k3s.ingenstans.se
+  tls:
+    - hosts:
+      - node-red.k3s.ingenstans.se
+      secretName: node-red-ingress-cert
