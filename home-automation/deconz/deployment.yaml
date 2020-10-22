@@ -5,6 +5,8 @@ metadata:
   labels:
     app: deconz
     app.kubernetes.io/name: deconz
+  annotations:
+    reloader.stakater.com/auto: "true"
 spec:
   replicas: 1
   selector:
