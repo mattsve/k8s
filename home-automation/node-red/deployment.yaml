@@ -67,7 +67,7 @@ spec:
             - gomplate -d secrets=/secrets < /templates/crontab.tmpl > /config/crontab
       containers:
         - name: node-red
-          image: nodered/node-red:1.2.2
+          image: nodered/node-red:1.2.3
           imagePullPolicy: IfNotPresent
           env:
             - name: TZ
