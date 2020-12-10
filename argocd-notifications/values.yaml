@@ -1,0 +1,3 @@
+argocd-notifications:
+  secret:
+    create: false
