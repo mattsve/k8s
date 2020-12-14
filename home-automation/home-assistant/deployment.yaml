@@ -1,29 +1,29 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: deconz
+  name: home-assistant
   labels:
-    app: deconz
-    app.kubernetes.io/name: deconz
+    app: home-assistant
+    app.kubernetes.io/name: home-assistant
   annotations:
     reloader.stakater.com/auto: "true"
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: deconz
+      app: home-assistant
   template:
     metadata:
       labels:
-        app: deconz
-        app.kubernetes.io/name: deconz 
+        app: home-assistant
+        app.kubernetes.io/name: home-assistant 
     spec:
       initContainers:
         - name: init-borg
           image: ghcr.io/mattsve/borgmatic:0.3
           imagePullPolicy: IfNotPresent
           volumeMounts:
-            - name: deconz
+            - name: home-assistant
               mountPath: /data
             - name: secrets
               mountPath: /root/.ssh
@@ -34,12 +34,12 @@ spec:
             - name: REPOSITORY
               valueFrom:
                 secretKeyRef:
-                  name: deconz
+                  name: home-assistant
                   key: borg-repo
             - name: PASSPHRASE
               valueFrom:
                 secretKeyRef:
-                  name: deconz
+                  name: home-assistant
                   key: borg-passphrase
           args:
             - restore
@@ -48,7 +48,7 @@ spec:
             - -p 
             - "'$(PASSPHRASE)'"
             - -a 
-            - deconz
+            - home-assistant
             - /data
         - name: inject-secrets
           image: hairyhenderson/gomplate:v3.8.0-alpine
@@ -66,37 +66,24 @@ spec:
           args:
             - gomplate -d secrets=/secrets < /templates/crontab.tmpl > /config/crontab
       containers:
-        - name: deconz
-          image: marthoc/deconz:amd64-2.07.01
+        - name: home-assistant
+          image: nodered/home-assistant:1.2.3
           imagePullPolicy: IfNotPresent
           env:
             - name: TZ
-              value: Europe/Stockholm
-            - name: DECONZ_DEVICE
-              value: /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2152763-if00
-            - name: DECONZ_WS_PORT
-              value: "8080"
-            - name: DECONZ_VNC_MODE
-              value: "1"
-            - name: DECONZ_VNC_PORT
-              value: "5900"
-            - name: DECONZ_VNC_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: deconz
-                  key: vnc-password
+              value: Europe/Stockholm            
           volumeMounts:
-            - name: deconz
-              mountPath: /root/.local/share/dresden-elektronik/deCONZ
-            - name: conbee-device
-              mountPath: /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2152763-if00
-          securityContext:
-            privileged: true
+            - name: home-assistant
+              mountPath: /data            
+          ports:
+            - containerPort: 1880
+              name: http
+              protocol: TCP
         - name: cron-borg
           image: ghcr.io/mattsve/borgmatic:0.3
           imagePullPolicy: IfNotPresent
           volumeMounts:
-            - name: deconz
+            - name: home-assistant
               mountPath: /data
             - name: backup-config
               mountPath: /config
@@ -110,19 +97,16 @@ spec:
             - cron
             - /config/crontab
       volumes:
-        - name: deconz
+        - name: home-assistant
           emptyDir: {}
         - name: backup-config
           emptyDir: {}
         - name: backup-templates
           configMap:
-            name: deconz-backup-templates
-        - name: conbee-device
-          hostPath:
-            path: /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2152763-if00
+            name: home-assistant-backup-templates        
         - name: secrets
           secret:
-            secretName: deconz
+            secretName: home-assistant
             items:
               - key: id_ed25519
                 mode: 0600
@@ -135,7 +119,7 @@ spec:
                 path: known_hosts
         - name: backup-secrets
           secret:
-            secretName: deconz
+            secretName: home-assistant
             items:
               - key: borg-repo
                 mode: 0400
