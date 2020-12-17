@@ -14,5 +14,8 @@
     null,
     { "name": "bedroom_window" },
     { "name": "waterpump" },
-    {}
+    {},
+    null,
+    {},
+    { "name": "hallway_smoke_detector" }
 ]
