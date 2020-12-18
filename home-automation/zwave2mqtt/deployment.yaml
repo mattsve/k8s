@@ -24,7 +24,7 @@ spec:
               mountPath: /data
           command: ["sh", "-c"]
           args:
-            - gomplate -d secrets=/secrets < /templates/settings.json.tmpl > /data/settings.json
+            - gomplate -d secrets=/secrets < /templates/settings.json.tmpl > /data/settings.json && cp /templates/nodes.json /data
       containers:
         - name: zwave2mqtt
           image: robertslando/zwave2mqtt:4.0.6
@@ -58,10 +58,7 @@ spec:
             - mountPath: /dev/serial/by-id/usb-0658_0200-if00
               name: zwavestick
             - mountPath: /usr/src/app/store
-              name: data
-            - mountPath: /usr/src/app/store/nodes.json
-              name: config
-              subPath: nodes.json
+              name: data            
       nodeSelector:
         zwave: "true"
       volumes:

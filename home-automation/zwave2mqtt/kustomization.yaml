@@ -17,3 +17,5 @@ configMapGenerator:
     options:
       labels:
         app.kubernetes.io/name: zwave
+generatorOptions:
+    disableNameSuffixHash: true
