@@ -29,7 +29,7 @@ spec:
             - gomplate -d secrets=/secrets < /templates/settings.json.tmpl > /store/settings.json && ln -sf /config/nodes.json /store/nodes.json
       containers:
         - name: zwave2mqtt
-          image: robertslando/zwave2mqtt:4.0.6
+          image: robertslando/zwave2mqtt:4.1.1
           livenessProbe:
             failureThreshold: 12
             httpGet:
