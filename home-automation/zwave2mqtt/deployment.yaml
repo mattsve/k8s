@@ -26,7 +26,7 @@ spec:
               mountPath: /config
           command: ["sh", "-c"]
           args:
-            - gomplate -d secrets=/secrets < /templates/settings.json.tmpl > /store/settings.json && ln -sf /config/nodes.json /store/nodes.json
+            - gomplate -d secrets=/secrets < /templates/settings.json.tmpl > /store/settings.json && ln -sf /config/nodes.json /store/nodes.json && ln -sf /config/customDevices.json /store/customDevices.json
       containers:
         - name: zwave2mqtt
           image: robertslando/zwave2mqtt:4.1.1
