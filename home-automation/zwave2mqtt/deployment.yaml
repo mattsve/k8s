@@ -20,11 +20,13 @@ spec:
               mountPath: /secrets
             - name: config
               mountPath: /templates
-            - name: data
-              mountPath: /data
+            - name: store
+              mountPath: /store
+            - name: config
+              mountPath: /config
           command: ["sh", "-c"]
           args:
-            - gomplate -d secrets=/secrets < /templates/settings.json.tmpl > /data/settings.json && cp /templates/nodes.json /data
+            - gomplate -d secrets=/secrets < /templates/settings.json.tmpl > /store/settings.json && ln -sf /config/nodes.json /store/nodes.json
       containers:
         - name: zwave2mqtt
           image: robertslando/zwave2mqtt:4.0.6
@@ -58,18 +60,21 @@ spec:
             - mountPath: /dev/serial/by-id/usb-0658_0200-if00
               name: zwavestick
             - mountPath: /usr/src/app/store
-              name: data            
+              name: store            
+            - mountPath: /config
+              name: config
       nodeSelector:
         zwave: "true"
       volumes:
         - name: zwavestick
           hostPath:
             path: /dev/serial/by-id/usb-0658_0200-if00
-        - name: data
-          emptyDir: {}
         - name: config
           configMap:
             name: zwave
         - name: secrets
           secret:
             secretName: zwave
+        - name: store
+          persistentVolumeClaim:
+            claimName: zwave2mqtt
