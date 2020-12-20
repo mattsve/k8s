@@ -26,7 +26,7 @@ spec:
               mountPath: /config
           command: ["sh", "-c"]
           args:
-            - gomplate -d secrets=/secrets < /templates/settings.json.tmpl > /store/settings.json && ln -sf /config/nodes.json /store/nodes.json && ln -sf /config/customDevices.json /store/customDevices.json
+            - gomplate -d secrets=/secrets < /templates/settings.json.tmpl > /store/settings.json && cp -f /config/nodes.json /store/nodes.json && ln -sf /config/customDevices.json /store/customDevices.json
       containers:
         - name: zwave2mqtt
           image: robertslando/zwave2mqtt:4.1.1
@@ -71,7 +71,7 @@ spec:
             path: /dev/serial/by-id/usb-0658_0200-if00
         - name: config
           configMap:
-            name: zwave
+            name: zwave2mqtt
         - name: secrets
           secret:
             secretName: zwave

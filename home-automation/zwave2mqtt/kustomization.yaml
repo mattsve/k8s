@@ -11,7 +11,7 @@ resources:
   - pvc.yaml
 
 configMapGenerator:
-  - name: zwave
+  - name: zwave2mqtt
     files:
       - settings.json.tmpl
       - nodes.json
