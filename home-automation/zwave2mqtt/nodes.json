@@ -19,5 +19,6 @@
     {},
     { "name": "hallway_smoke_detector" },
     null,
-    { "name": "cellar_hallway_smoke_detector" }
+    { "name": "cellar_hallway_smoke_detector" },
+    { "name": "upper_hallway_smoke_detector" }
 ]
