@@ -1,4 +1,4 @@
-'apiVersion: apps/v1
+bnapiVersion: apps/v1
 kind: Deployment
 metadata:
   name: code-server
@@ -23,7 +23,8 @@ spec:
           command:
             - sh
             - c
-            - | chown -R 1000:1000 /home/coder
+            - | 
+              chown -R 1000:1000 /home/coder
           securityContext:
             runAsUser: 1000
           volumeMounts:
