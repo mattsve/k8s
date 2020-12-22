@@ -22,7 +22,7 @@ spec:
           imagePullPolicy: IfNotPresent
           command:
             - sh
-            - c
+            - -c
             - | 
               chown -R 1000:1000 /home/coder
           securityContext:
