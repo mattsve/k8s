@@ -53,7 +53,6 @@ spec:
             - containerPort: 8080
               name: http
               protocol: TCP
-          resources: {}
           securityContext:
             runAsUser: 1000
           volumeMounts:
