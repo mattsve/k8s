@@ -62,3 +62,4 @@ spec:
         - name: data
           persistentVolumeClaim:
             claimName: code-server
+
