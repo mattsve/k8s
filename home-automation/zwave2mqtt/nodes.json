@@ -8,7 +8,7 @@
     { "name": "3d_printer"},
     { "name": "aquarium_100l"},
     { "name": "diningroom_corner" },
-    null,
+    { "name": "christmas_tree" },,
     { "name": "washing_machine" },
     { "name": "dryer" },
     null,
