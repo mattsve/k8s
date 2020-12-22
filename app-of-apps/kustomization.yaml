@@ -10,3 +10,4 @@ resources:
     - base/mosquitto.yaml
     - base/reloader.yaml
     - base/home-automation.yaml
+    - base/support.yaml

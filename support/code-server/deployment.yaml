@@ -1,0 +1,65 @@
+'apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: code-server
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      name: code-server
+  template:
+    metadata:
+      labels:
+        name: code-server
+    spec:
+      securityContext:
+        fsGroup: 1000
+      initContainers:
+        - name: init-chmod-data
+          image: busybox:1.32.0
+          imagePullPolicy: IfNotPresent
+          command:
+            - sh
+            - c
+            - | chown -R 1000:1000 /home/coder
+          securityContext:
+            runAsUser: 1000
+          volumeMounts:
+            - name: data
+              mountPath: /home/coder
+      containers:
+        - name: code-server
+          image: codercom/code-server:3.8.0
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: TZ
+              value: Europe/Stockholm
+            - name: PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: code-server
+                  key: password
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          ports:
+            - containerPort: 8080
+              name: http
+              protocol: TCP
+          resources: {}
+          securityContext:
+            runAsUser: 1000
+          volumeMounts:
+            - mountPath: /home/coder
+              name: data
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: code-server
