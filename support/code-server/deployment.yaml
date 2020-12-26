@@ -40,6 +40,10 @@ spec:
                 secretKeyRef:
                   name: code-server
                   key: password
+            - name: SERVICE_URL
+              value: https://marketplace.visualstudio.com/_apis/public/gallery
+            - name: ITEM_URL
+              value: https://marketplace.visualstudio.com/items
           livenessProbe:
             httpGet:
               path: /
