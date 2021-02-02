@@ -20,7 +20,7 @@ spec:
     spec:
       initContainers:
         - name: init-borg
-          image: ghcr.io/mattsve/borgmatic:0.3
+          image: ghcr.io/mattsve/borgmatic:0.4
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - name: home-assistant
@@ -80,7 +80,7 @@ spec:
               name: http
               protocol: TCP
         - name: cron-borg
-          image: ghcr.io/mattsve/borgmatic:0.3
+          image: ghcr.io/mattsve/borgmatic:0.4
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - name: home-assistant
