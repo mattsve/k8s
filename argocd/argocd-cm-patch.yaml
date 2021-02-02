@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-cm
+data:
+  repositories: |
+    - name: bitnami
+      type: helm
+      url: https://charts.bitnami.com/bitnami
+    - name: coredns
+      type: helm
+      url: https://coredns.github.io/helm
+    - name: argocd
+      type: helm
+      url: https://argoproj.github.io/argo-helm

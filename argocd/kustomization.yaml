@@ -18,4 +18,5 @@ patchesJson6902:
 
 patches:
     - path: argocd-secret-patch.yaml
+    - path: argocd-cm-patch.yaml
 namespace: argocd
