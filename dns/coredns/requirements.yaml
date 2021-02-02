@@ -1,4 +1,0 @@
-dependencies:
-    - name: coredns
-      version: 1.13.3
-      repository: https://kubernetes-charts.storage.googleapis.com/

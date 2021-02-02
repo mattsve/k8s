@@ -1,4 +1,0 @@
-dependencies:
-    - name: etcd
-      version: 4.10.1
-      repository: https://charts.bitnami.com/bitnami
