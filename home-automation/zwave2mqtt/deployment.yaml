@@ -65,6 +65,11 @@ spec:
               name: config
       nodeSelector:
         zwave: "true"
+      tolerations:
+        - key: 'node'
+          operator: 'Equal'
+          value: 'small'
+          effect: 'NoSchedule'
       volumes:
         - name: zwavestick
           hostPath:
