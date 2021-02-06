@@ -40,3 +40,8 @@ spec:
             path: /dev/serial/by-id/usb-RFXCOM_RFXtrx433_A129KKXK-if00-port0
       nodeSelector:
         rfxtrx: "true"
+      tolerations:
+        - key: 'node'
+          operator: 'Equal'
+          value: 'small'
+          effect: 'NoSchedule'
