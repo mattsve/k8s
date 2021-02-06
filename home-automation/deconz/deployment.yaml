@@ -51,7 +51,7 @@ spec:
             - deconz
             - /data
         - name: inject-secrets
-          image: hairyhenderson/gomplate:v3.8.0-alpine
+          image: hairyhenderson/gomplate:v3.9.0-alpine
           volumeMounts:
             - name: backup-templates
               mountPath: /templates
