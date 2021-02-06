@@ -9,3 +9,4 @@ spec:
       tolerations:
       - effect: NoSchedule
         key: node
+        operator: Exists
