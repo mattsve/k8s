@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   name: speaker
-  namespace: metallb
+  namespace: metallb-system
 spec:
   template:
     spec:
