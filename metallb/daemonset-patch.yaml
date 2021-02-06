@@ -1,0 +1,10 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: speaker
+spec:
+  template:
+    spec:
+      tolerations:
+      - effect: NoSchedule
+        key: node
