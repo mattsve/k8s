@@ -21,3 +21,4 @@ spec:
       targetPort: 5900
       name: vnc
   type: LoadBalancer
+  externalTrafficPolicy: Local
