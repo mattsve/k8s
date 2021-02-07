@@ -127,5 +127,3 @@ spec:
               - key: borg-passphrase
                 mode: 0400
                 path: borg-passphrase
-      nodeSelector:
-        conbee: "true"
