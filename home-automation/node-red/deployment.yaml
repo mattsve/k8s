@@ -64,7 +64,7 @@ spec:
               value: Europe/Stockholm
           command: ["sh", "-c"]
           args:
-            - gomplate -d secrets=/secrets < /templates/crontab.tmpl > /config/crontab
+            - gomplate -d secrets=/secrets < /templates/borg-backup.sh.tmpl > /config/borg-backup.sh && cp /templates/crontab /config/crontab && chmod +x /config/borg-backup.sh
       containers:
         - name: node-red
           image: nodered/node-red:1.2.3

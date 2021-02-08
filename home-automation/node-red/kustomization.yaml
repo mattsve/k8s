@@ -12,7 +12,8 @@ resources:
 configMapGenerator:
   - name: node-red-backup-templates
     files:
-      - crontab.tmpl
+      - crontab
+      - borg-backup.sh.tmpl
     options:
       labels:
         app.kubernetes.io/name: node-red
