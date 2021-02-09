@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: zwavejs2mqtt-http-ingress
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    traefik.ingress.kubernetes.io/redirect-entry-point: https
+spec:
+  rules:
+  - http:
+      paths:
+      - backend:
+          serviceName: zwavejs2mqtt
+          servicePort: http
+    host: zwavejs2mqtt.k3s.ingenstans.se
+  tls:
+    - hosts:
+      - zwavejs2mqtt.k3s.ingenstans.se
+      secretName: zwavejs2mqtt-http-ingress-cert

@@ -1,0 +1,157 @@
+{
+    "271-4099-3074": [
+        {
+            "type": "binary_sensor",
+            "object_id": "alarm_general",
+            "values": [
+                "156-1-0"
+            ],
+            "discovery_payload": {
+                "payload_on": 255,
+                "payload_off": 0,
+                "value_template": "{{ value_json.value }}",
+                "device_class": "problem",
+                "state_topic": "156-1-0",
+                "json_attributes_topic": "156-1-0"
+            }
+        },
+        {
+            "type": "binary_sensor",
+            "object_id": "alarm_heat",
+            "values": [
+                "156-1-4"
+            ],
+            "discovery_payload": {
+                "payload_on": 255,
+                "payload_off": 0,
+                "value_template": "{{ value_json.value }}",
+                "device_class": "heat",
+                "state_topic": "156-1-4",
+                "json_attributes_topic": "156-1-4"
+            }
+        },
+        {
+            "type": "binary_sensor",
+            "object_id": "alarm_smoke",
+            "values": [
+                "156-1-1"
+            ],
+            "discovery_payload": {
+                "payload_on": 255,
+                "payload_off": 0,
+                "value_template": "{{ value_json.value }}",
+                "device_class": "smoke",
+                "state_topic": "156-1-1",
+                "json_attributes_topic": "156-1-1"
+            }
+        },
+        {
+            "type": "binary_sensor",
+            "object_id": "contact",
+            "values": [
+                "48-1-0"
+            ],
+            "discovery_payload": {
+                "payload_on": true,
+                "payload_off": false,
+                "value_template": "{{ value_json.value }}",
+                "device_class": "opening",
+                "state_topic": "48-1-0",
+                "json_attributes_topic": "48-1-0"
+            }
+        },
+        {
+            "type": "sensor",
+            "object_id": "alarm_heat",
+            "values": [
+                "113-1-4"
+            ],
+            "discovery_payload": {
+                "value_template": "{{ value_json.value }}",
+                "icon": "mdi:thermometer",
+                "state_topic": "113-1-4",
+                "json_attributes_topic": "113-1-4"
+            }
+        },
+        {
+            "type": "sensor",
+            "object_id": "alarm_cover",
+            "values": [
+                "113-1-7"
+            ],
+            "discovery_payload": {
+                "value_template": "{{ value_json.value }}",
+                "icon": "mdi:alarm-light",
+                "state_topic": "113-1-7",
+                "json_attributes_topic": "113-1-7"
+            }
+        },
+        {
+            "type": "sensor",
+            "object_id": "alarm_battery",
+            "values": [
+                "113-1-8"
+            ],
+            "discovery_payload": {
+                "value_template": "{{ value_json.value }}",
+                "icon": "mdi:battery",
+                "state_topic": "113-1-8",
+                "json_attributes_topic": "113-1-8"
+            }
+        },
+        {
+            "type": "sensor",
+            "object_id": "alarm_smoke",
+            "values": [
+                "113-1-1"
+            ],
+            "discovery_payload": {
+                "value_template": "{{ value_json.value }}",
+                "icon": "mdi:smoke-detector",
+                "state_topic": "113-1-1",
+                "json_attributes_topic": "113-1-1"
+            }
+        },
+        {
+            "type": "sensor",
+            "object_id": "alarm_system",
+            "values": [
+                "113-1-9"
+            ],
+            "discovery_payload": {
+                "value_template": "{{ value_json.value }}",
+                "icon": "mdi:alarm-light",
+                "state_topic": "113-1-9",
+                "json_attributes_topic": "113-1-9"
+            }
+        },
+        {
+            "type": "sensor",
+            "object_id": "battery_level",
+            "values": [
+                "128-1-0"
+            ],
+            "discovery_payload": {
+                "value_template": "{{ value_json.value }}",
+                "device_class": "battery",
+                "unit_of_measurement": "%",
+                "state_topic": "128-1-0",
+                "json_attributes_topic": "128-1-0"
+            }
+        },
+        {
+            "type": "sensor",
+            "object_id": "temperature",
+            "values": [
+                "49-1-1"
+            ],
+            "discovery_payload": {
+                "value_template": "{{ value_json.value }}",
+                "device_class": "temperature",
+                "unit_of_measurement": "°C",
+                "state_topic": "49-1-1",
+                "json_attributes_topic": "49-1-1"
+            }
+        }
+    ]
+}
