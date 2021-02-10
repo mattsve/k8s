@@ -79,7 +79,7 @@ spec:
             name: zwavejs2mqtt
         - name: secrets
           secret:
-            secretName: zwavejs2mqtt
+            secretName: zwave
         - name: store
           persistentVolumeClaim:
             claimName: zwavejs2mqtt
