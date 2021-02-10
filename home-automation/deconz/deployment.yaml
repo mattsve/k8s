@@ -67,7 +67,7 @@ spec:
             - gomplate -d secrets=/secrets < /templates/crontab.tmpl > /config/crontab
       containers:
         - name: deconz
-          image: marthoc/deconz:arm64-2.07.01
+          image: marthoc/deconz:arm64-2.05.77
           imagePullPolicy: IfNotPresent
           env:
             - name: TZ
