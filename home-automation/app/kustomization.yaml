@@ -3,8 +3,7 @@ kind: Kustomization
 
 resources:
     - base/namespace.yaml
-    - base/rfxtrx2mqtt.yaml
-    - base/zwave2mqtt.yaml
+    - base/rfxtrx2mqtt.yaml    
     - base/deconz.yaml
     - base/node-red.yaml
     - base/zwavejs2mqtt.yaml
