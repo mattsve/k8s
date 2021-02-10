@@ -67,7 +67,7 @@ spec:
             - gomplate -d secrets=/secrets < /templates/crontab.tmpl > /config/crontab
       containers:
         - name: deconz
-          image: marthoc/deconz:arm64-2.05.77
+          image: marthoc/deconz:arm64-2.07.01
           imagePullPolicy: IfNotPresent
           env:
             - name: TZ
@@ -90,6 +90,8 @@ spec:
               mountPath: /root/.local/share/dresden-elektronik/deCONZ
             - name: conbee-device
               mountPath: /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2152763-if00
+              - name: conbee-device
+              mountPath: /dev/ttyAMA0
           securityContext:
             privileged: true
         - name: cron-borg
