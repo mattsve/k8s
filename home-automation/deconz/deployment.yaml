@@ -90,7 +90,7 @@ spec:
               mountPath: /root/.local/share/dresden-elektronik/deCONZ
             - name: conbee-device
               mountPath: /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2152763-if00
-              - name: conbee-device
+            - name: conbee-device
               mountPath: /dev/ttyAMA0
           securityContext:
             privileged: true
