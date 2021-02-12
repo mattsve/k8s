@@ -15,7 +15,6 @@ configMapGenerator:
     files:
       - settings.json.tmpl
       - nodes.json
-      - customDevices.json
     options:
       labels:
         app.kubernetes.io/name: zwavejs
