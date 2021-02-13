@@ -18,5 +18,8 @@ metadata:
 spec:
   accessModes:
     - ReadOnlyMany
+  resources:
+    requests:
+      storage: 2Ti
   volumeName: plex-data
   storageClassName: ""

@@ -3,6 +3,8 @@ kind: PersistentVolume
 metadata:
   name: plex-data
 spec:
+  capacity:
+    storage: 2Ti
   accessModes:
     - ReadOnlyMany
   persistentVolumeReclaimPolicy: Retain
