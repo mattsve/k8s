@@ -16,6 +16,7 @@ spec:
         app: plex
         app.kubernetes.io/name: plex 
     spec:
+      hostname: plex-k3s
       initContainers:
         - name: init-borg
           image: ghcr.io/mattsve/borgmatic:0.5
