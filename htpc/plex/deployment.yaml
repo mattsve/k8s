@@ -113,7 +113,7 @@ spec:
             - name: config
               mountPath: /data
             - name: backup-scripts
-              mountPath: /scripts
+              mountPath: /config
             - name: ssh-secrets
               mountPath: /root/.ssh
               readOnly: true
@@ -132,7 +132,7 @@ spec:
                   key: borg-passphrase
           args:
             - cron
-            - /scripts/crontab
+            - /config/crontab
       volumes:
         - name: config
           emptyDir: {}
