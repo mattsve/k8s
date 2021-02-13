@@ -21,7 +21,7 @@ spec:
           image: ghcr.io/mattsve/borgmatic:0.4
           imagePullPolicy: IfNotPresent
           volumeMounts:
-            - name: plex-config
+            - name: config
               mountPath: /data
             - name: ssh-secrets
               mountPath: /root/.ssh
