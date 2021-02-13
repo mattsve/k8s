@@ -18,7 +18,7 @@ spec:
     spec:
       initContainers:
         - name: init-borg
-          image: ghcr.io/mattsve/borgmatic:0.5
+          image: ghcr.io/mattsve/borgmatic:0.4
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - name: config
