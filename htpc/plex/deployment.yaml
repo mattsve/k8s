@@ -46,7 +46,7 @@ spec:
             - -p 
             - "'$(PASSPHRASE)'"
             - -a 
-            - node-red
+            - plex
             - /data
         - name: fetch-claim-token
           image: node:15.8.0-alpine3.10
