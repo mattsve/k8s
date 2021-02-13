@@ -1,0 +1,174 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: plex
+  labels:
+    app: plex
+    app.kubernetes.io/name: plex
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: plex
+  template:
+    metadata:
+      labels:
+        app: plex
+        app.kubernetes.io/name: plex 
+    spec:
+      initContainers:
+        - name: init-borg
+          image: ghcr.io/mattsve/borgmatic:0.4
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - name: plex-config
+              mountPath: /data
+            - name: ssh-secrets
+              mountPath: /root/.ssh
+              readOnly: true
+          env:
+            - name: TZ
+              value: Europe/Stockholm
+            - name: REPOSITORY
+              valueFrom:
+                secretKeyRef:
+                  name: plex
+                  key: borg-repo
+            - name: PASSPHRASE
+              valueFrom:
+                secretKeyRef:
+                  name: plex
+                  key: borg-passphrase
+          args:
+            - restore
+            - -r
+            - "'$(REPOSITORY)'"
+            - -p 
+            - "'$(PASSPHRASE)'"
+            - -a 
+            - node-red
+            - /data
+        - name: fetch-claim-token
+          image: node:15.8.0-alpine3.10
+          volumeMounts:
+            - name: config
+              mountPath: /config
+            - name: plex-scripts
+              mountPath: /scripts
+          env:
+            - name: TZ
+              value: Europe/Stockholm
+            - name: USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: plex
+                  key: username
+            - name: PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: plex
+                  key: password
+          command: ["sh", "-c"]
+          args:
+            - ls /config/claimToken || /scripts/getClaimToken.js "${USERNAME}" "${PASSWORD}" > /config/claimToken
+      containers:
+        - name: plex
+          image: plexinc/pms-docker:1.21.3.4021-5a0a3e4b2
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: TZ
+              value: Europe/Stockholm
+            - name: ADVERTISE_IP
+              value: https://plex.k3s.ingenstans.se:443
+          volumeMounts:
+            - name: config
+              mountPath: /config
+            - name: transcode
+              mountPath: /transcode
+            - name: data
+              mountPath: /data
+          ports:
+            - containerPort: 32400
+              name: mediaserver
+              protocol: TCP
+          command: ["sh", "-c"]
+          args:
+            - PLEX_CLAIM=$(cat /config/claimToken); exec /init
+          readinessProbe:
+            httpGet:
+              path: /identity
+              port: 32400
+            initialDelaySeconds: 15
+            timeoutSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /identity
+              port: 32400
+            initialDelaySeconds: 10
+            timeoutSeconds: 10
+        - name: cron-borg
+          image: ghcr.io/mattsve/borgmatic:0.4
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - name: config
+              mountPath: /data
+            - name: backup-scripts
+              mountPath: /scripts
+            - name: ssh-secrets
+              mountPath: /root/.ssh
+              readOnly: true
+          env:
+            - name: TZ
+              value: Europe/Stockholm
+            - name: REPOSITORY
+              valueFrom:
+                secretKeyRef:
+                  name: plex
+                  key: borg-repo
+            - name: PASSPHRASE
+              valueFrom:
+                secretKeyRef:
+                  name: plex
+                  key: borg-passphrase
+          args:
+            - cron
+            - /scripts/crontab
+      volumes:
+        - name: config
+          emptyDir: {}
+        - name: transcode
+          persistentVolumeClaim:
+            claimName: plex-transcode
+        - name: data
+          persistentVolumeClaim:
+            claimName: plex-data
+        - name: scripts
+          configMap:
+            name: plex
+            items:
+                - key: getClaimToken.js
+                  mode: 0755
+                  path: getClaimToken.js
+        - name: ssh-secrets
+          secret:
+            secretName: plex
+            items:
+              - key: id_ed25519
+                mode: 0600
+                path: id_ed25519
+              - key: id_ed25519.pub
+                mode: 0644
+                path: id_ed25519.pub
+              - key: known_hosts
+                mode: 0644
+                path: known_hosts
+        - name: backup-scripts
+          configMap:
+            name: plex
+            items:
+              - key: borg-backup.sh
+                mode: 0755
+                path: borg-backup.sh
+              - key: crontab
+                mode: 0644
+                path: crontab

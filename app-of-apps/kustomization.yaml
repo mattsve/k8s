@@ -12,3 +12,4 @@ resources:
     - base/home-automation.yaml
     - base/support.yaml
     - base/csi-driver-smb.yaml
+    - base/htpc.yaml
