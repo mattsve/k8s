@@ -11,3 +11,4 @@ resources:
     - base/reloader.yaml
     - base/home-automation.yaml
     - base/support.yaml
+    - bas/csi-driver-smb.yaml

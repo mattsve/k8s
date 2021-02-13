@@ -1,0 +1,7 @@
+csi-driver-smb:
+  image:
+    livenessProbe:
+      tag: v2.2.0
+  controller:
+    replicas: 1
+    runOnMaster: true
