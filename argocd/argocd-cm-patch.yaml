@@ -13,3 +13,6 @@ data:
     - name: argocd
       type: helm
       url: https://argoproj.github.io/argo-helm
+    - name: csi-driver-smb
+      type: helm
+      url: https://raw.githubusercontent.com/kubernetes-csi/csi-driver-smb/master/charts
