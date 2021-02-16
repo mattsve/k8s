@@ -16,3 +16,6 @@ data:
     - name: csi-driver-smb
       type: helm
       url: https://raw.githubusercontent.com/kubernetes-csi/csi-driver-smb/master/charts
+    - name: openebs-localpv
+      type: helm
+      url: https://openebs.github.io/dynamic-localpv-provisioner

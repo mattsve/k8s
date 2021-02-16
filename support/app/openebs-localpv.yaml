@@ -1,20 +1,19 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: code-server
+  name: openebs-localpv
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: support
+    namespace: openebs
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: support/code-server
+    path: support/openebs-localpv
     repoURL: https://github.com/mattsve/k8s
     targetRevision: HEAD
   syncPolicy:
     automated:
-      selfHeal: false
-      prune: true
+      selfHeal: true
