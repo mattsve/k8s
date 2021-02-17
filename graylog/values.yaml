@@ -20,6 +20,6 @@ graylog:
           type: LoadBalancer
           annotations:
             external-dns.alpha.kubernetes.io/hostname: logs.k3s.ingenstans.se.
-          ports:
-            - name: syslog
-              port: 5410
+        ports:
+          - name: syslog
+            port: 5410
