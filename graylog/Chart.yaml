@@ -1,0 +1,7 @@
+apiVersion: v2
+name: graylog-wrapper
+version: '1.0'
+dependencies:
+    - name: graylog
+      version: 2.6.0
+      repository: https://charts.kong-z.com/

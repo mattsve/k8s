@@ -1,0 +1,24 @@
+graylog:
+  graylog:
+    replicas: 1
+    persistence:
+      storageClass: openebs-hostpath
+    ingress:
+      enabled: true
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+        traefik.ingress.kubernetes.io/redirect-entry-point: https
+      hosts:
+        - graylog.k3s.ingenstans.se
+      tls:
+        - hosts:
+            - graylog.k3s.ingenstans.se
+          secretName: graylog-ingress-cert
+    input:
+      udp:
+        service: LoadBalancer
+        annotations:
+          external-dns.alpha.kubernetes.io/hostname: logs.k3s.ingenstans.se.
+        ports:
+          - name: syslog
+            port: 5410

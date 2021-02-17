@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: graylog
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: graylog
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: graylog
+    repoURL: https://github.com/mattsve/k8s
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      selfHeal: true

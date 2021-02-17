@@ -19,3 +19,6 @@ data:
     - name: openebs-localpv
       type: helm
       url: https://openebs.github.io/dynamic-localpv-provisioner
+    - name: kongz
+      type: helm
+      url: https://charts.kong-z.com/
