@@ -16,9 +16,10 @@ graylog:
           secretName: graylog-ingress-cert
     input:
       udp:
-        service: LoadBalancer
-        annotations:
-          external-dns.alpha.kubernetes.io/hostname: logs.k3s.ingenstans.se.
-        ports:
-          - name: syslog
-            port: 5410
+        service:
+          type: LoadBalancer
+          annotations:
+            external-dns.alpha.kubernetes.io/hostname: logs.k3s.ingenstans.se.
+          ports:
+            - name: syslog
+              port: 5410
