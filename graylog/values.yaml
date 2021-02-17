@@ -23,3 +23,8 @@ graylog:
         ports:
           - name: syslog
             port: 5410
+  
+  elasticseach:
+    cluster:
+      env:
+        RECOVER_AFTER_MASTER_NODES: 1
