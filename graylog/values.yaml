@@ -22,7 +22,7 @@ graylog:
             external-dns.alpha.kubernetes.io/hostname: logs.k3s.ingenstans.se.
         ports:
           - name: syslog
-            port: 5410
+            port: 5140
   
   elasticsearch:
     cluster:
