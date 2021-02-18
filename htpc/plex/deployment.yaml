@@ -137,7 +137,7 @@ spec:
       volumes:
         - name: config
           persistentVolumeClaim:
-            claimName: plex-data
+            claimName: plex-config
         - name: transcode
           persistentVolumeClaim:
             claimName: plex-transcode
