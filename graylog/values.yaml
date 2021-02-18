@@ -3,6 +3,7 @@ graylog:
     replicas: 1
     persistence:
       storageClass: openebs-hostpath
+    existingRootSecret: graylog
     ingress:
       enabled: true
       annotations:
