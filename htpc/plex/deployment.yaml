@@ -136,7 +136,8 @@ spec:
             - /config/crontab
       volumes:
         - name: config
-          emptyDir: {}
+          persistentVolumeClaim:
+            claimName: plex-data
         - name: transcode
           persistentVolumeClaim:
             claimName: plex-transcode
