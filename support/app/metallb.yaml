@@ -8,7 +8,7 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: metallb
+    path: support/metallb
     repoURL: https://github.com/mattsve/k8s
     targetRevision: HEAD
   syncPolicy:

@@ -4,6 +4,7 @@ metadata:
   name: deconz
   annotations:
     external-dns.alpha.kubernetes.io/hostname: deconz.k3s.ingenstans.se.
+    metallb.universe.tf/address-pool: default
 spec:
   selector:
     app: deconz

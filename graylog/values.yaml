@@ -21,6 +21,7 @@ graylog:
           type: LoadBalancer
           annotations:
             external-dns.alpha.kubernetes.io/hostname: logs.k3s.ingenstans.se.
+            metallb.universe.tf/address-pool: default
         ports:
           - name: syslog
             port: 5140

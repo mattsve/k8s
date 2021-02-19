@@ -80,7 +80,7 @@ spec:
             - name: TZ
               value: Europe/Stockholm
             - name: ADVERTISE_IP
-              value: https://plex.k3s.ingenstans.se:443
+              value: https://plex.k3s.ingenstans.se:443,http://10.30.1.254:32400
           volumeMounts:
             - name: config
               mountPath: /config

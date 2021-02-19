@@ -4,7 +4,6 @@ kind: Kustomization
 resources:
     - base/argocd.yaml
     - base/argocd-notifications.yaml
-    - base/metallb.yaml
     - base/dns.yaml
     - base/cert-manager.yaml
     - base/mosquitto.yaml
