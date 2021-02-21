@@ -18,7 +18,7 @@ spec:
         app: homeassistant
         app.kubernetes.io/name: homeassistant 
     spec:
-      hostnetwork: true
+      hostNetwork: true 
       initContainers:
         - name: init-borg
           image: ghcr.io/mattsve/borgmatic:0.5
