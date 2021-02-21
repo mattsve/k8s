@@ -7,4 +7,5 @@ resources:
     - base/deconz.yaml
     - base/node-red.yaml
     - base/zwavejs2mqtt.yaml
+    - base/homeassistant.yaml
     

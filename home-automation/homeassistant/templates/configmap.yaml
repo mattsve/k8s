@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: homeassistant-backup
+data:
+  crontab: |
+    # m h dom mon dow command
+    0 3 * * * /config/borg-backup.sh
+  borg-backup.sh: |
+    #!/bin/bash
+    /scripts/backup.sh -l -r "${REPOSITORY}" -p "${PASSPHRASE}" -a homeassistant /data
