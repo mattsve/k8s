@@ -9,3 +9,22 @@ spec:
     - protocol: TCP
       port: 8123
       targetPort: 8123
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: homeassistant-config
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: ha-config.k3s.ingenstans.se.
+    metallb.universe.tf/address-pool: default
+spec:
+  selector:
+    app: homeassistant
+  ports:
+    - protocol: TCP
+      port: 139
+      targetPort: 139
+    - protocol: TCP
+      port: 445
+      targetPort: 445
+  type: LoadBalancer

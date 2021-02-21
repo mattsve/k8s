@@ -9,6 +9,8 @@ metadata:
     reloader.stakater.com/auto: "true"
 spec:
   replicas: 1
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
       app: homeassistant
@@ -65,6 +67,28 @@ spec:
             - containerPort: 8123
               name: http
               protocol: TCP
+        - name: smb-server
+          image: dperson/samba:latest
+          imagePullPolicy: Always
+          env:
+            - name: TZ
+              value: Europe/Stockholm
+            - name: USER
+              valueFrom:
+                secretKeyRef:
+                  name: homeassistant
+                  key: smb-user
+          volumeMounts:
+            - name: config
+              mountPath: /config
+          ports:
+            - containerPort: 139
+              protocol: TCP
+            - containerPort: 445
+              protocol: TCP
+          args:
+            - -r
+            - '-s "config:/config;yes;no;no;mattias'
         - name: cron-borg
           image: ghcr.io/mattsve/borgmatic:0.5
           imagePullPolicy: IfNotPresent
