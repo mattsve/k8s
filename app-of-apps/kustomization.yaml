@@ -11,3 +11,4 @@ resources:
     - base/home-automation.yaml
     - base/support.yaml
     - base/htpc.yaml
+    - base/graylog.yaml
