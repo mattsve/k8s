@@ -31,3 +31,6 @@ graylog:
       env:
         RECOVER_AFTER_MASTER_NODES: 1
         EXPECTED_MASTER_NODES: 1
+    data:
+      persistence:
+        storageClass: openebs-hostpath
