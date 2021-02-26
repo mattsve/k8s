@@ -4,6 +4,8 @@ metadata:
   name: zwavejs2mqtt
 spec:
   replicas: 1
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
       name: zwavejs2mqtt
