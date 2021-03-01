@@ -11,9 +11,9 @@ argocd-notifications:
     - recipients:    
       - telegram:k3s-status
       triggers:
-        - on-app-deployed
-        - on-app-health-degraded
-        - on-app-sync-failed
+        - on-deployed
+        - on-health-degraded
+        - on-sync-failed
   
   templates:
     template.app-deployed: |
