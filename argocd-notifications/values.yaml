@@ -9,7 +9,7 @@ argocd-notifications:
 
   subscriptions:
     - recipients:    
-      - telegram:1477010537
+      - telegram:477010537
       triggers:
         - on-deployed
         - on-health-degraded
