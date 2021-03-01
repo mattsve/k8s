@@ -2,8 +2,8 @@ argocd-notifications:
   secret:
     create: false
 
-  notifiers:
-    service.slack: null
+  notifiers: 
+    service.slack: ''
     service.telegram: |
       token: $telegram-token
 
