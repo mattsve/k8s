@@ -8,12 +8,12 @@ argocd-notifications:
       token: $telegram-token
 
   subscriptions:
-    - recipients:
+    - recipients:    
       - telegram:k3s-status
       triggers:
-        - app-deployed
-        - app-health-degraded
-        - app-sync-failed
+        - on-app-deployed
+        - on-app-health-degraded
+        - on-app-sync-failed
   
   templates:
     template.app-deployed: |
