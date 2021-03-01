@@ -3,12 +3,13 @@ argocd-notifications:
     create: false
 
   notifiers:
+    service.slack: null
     service.telegram: |
       token: $telegram-token
 
   subscriptions:
     - recipients:
-      - telegram: k3s-status
+      - telegram:k3s-status
       triggers:
         - app-deployed
         - app-health-degraded
