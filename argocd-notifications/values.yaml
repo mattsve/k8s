@@ -11,14 +11,10 @@ argocd-notifications:
     - recipients:    
       - telegram:k3s_status
       triggers:
-        - on-deployed
         - on-health-degraded
         - on-sync-failed
   
   templates:
-    template.app-deployed: |
-      message: |
-        ✅ Application {{ .app.metadata.name }} is now running new version of deplyments manifests.
     template.app-health-degraded: |
       message: |
         ❗️ Application {{ .app.metadata.name }} has degraded.
@@ -27,12 +23,6 @@ argocd-notifications:
         ❕ Failed to sync application {{ .app.metadata.name }}.
 
   triggers:
-    trigger.on-deployed: |
-      - description: Application is synced and healthy. Triggered once per commit
-        oncePer: app.status.sync.revision
-        send:
-          - app-deployed
-        when: app.status.operationState.phase in ['Succeeded'] and app.status.health.status == 'Healthy'
     trigger.on-health-degraded: |
       - description: Application has degraded        
         send:
