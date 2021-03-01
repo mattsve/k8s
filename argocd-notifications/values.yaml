@@ -2,28 +2,43 @@ argocd-notifications:
   secret:
     create: false
 
-  templates:
-    - name: app-health-degraded
-      webhook:
-        telegram:
-          method: POST
-          body: |
-            {
-              "parse_mode": "MarkdownV2",
-              "text": "Application {{ .app.metadata.name }} has degraded. [Application details]({{.context.argocdUrl}}/applications/{{.app.metadata.name}})"
-            }
-    - name: app-sync-failed
-      webhook:
-        telegram:
-          method: POST
-          body: |
-            {
-              "parse_mode": "MarkdownV2",
-              "text": "The sync operation of application {{.app.metadata.name}} has failed at {{.app.status.operationState.finishedAt}} with the following error: {{.app.status.operationState.message}} Sync operation details are available [here]({{.context.argocdUrl}}/applications/{{.app.metadata.name}}?operation=true)."
-            }
+  notifiers:
+    service.telegram: |
+      token: $telegram-token
+
+  subscriptions:
+    - recipients:
+      - telegram: k3s-status
+      triggers:
+        - app-deployed
+        - app-health-degraded
+        - app-sync-failed
   
+  templates:
+    template.app-deployed: |
+      message: |
+        ✅ Application {{ .app.metadata.name }} is now running new version of deplyments manifests.
+    template.app-health-degraded: |
+      message: |
+        ❗️ Application {{ .app.metadata.name }} has degraded.
+    template.app-sync-failed: |
+      message: |
+        ❕ Failed to sync application {{ .app.metadata.name }}.
+
   triggers:
-    - name: on-health-degraded
-      enabled: true
-    - name: on-sync-failed
-      enabled: true
+    trigger.on-deployed: |
+      - description: Application is synced and healthy. Triggered once per commit
+        oncePer: app.status.sync.revision
+        send:
+          - app-deployed
+        when: app.status.operationState.phase in ['Succeeded'] and app.status.health.status == 'Healthy'
+    trigger.on-health-degraded: |
+      - description: Application has degraded        
+        send:
+          - app-health-degraded
+        when: app.status.health.status == 'Degraded'
+    trigger.on-sync-failed: |
+      - description: Application syncinc has failed
+        send:
+          - app-sync-failed
+        when: app.status.operationState.phase in ['Error', 'Failed']
