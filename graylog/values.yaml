@@ -43,6 +43,9 @@ graylog:
         INPUTS=$(curl -X GET -H "Content-Type: application/json" --user "admin:${GRAYLOG_PASSWORD_SECRET}" "http://graylog:9000/api/system/inputs")
         if [ $(echo $INPUTS | grep -c "UDP") != "1" ]; then
             curl -s -X POST -H "Content-Type: application/json" -d "${SYSLOG_UDP}" --user "admin:${GRAYLOG_PASSWORD_SECRET}" "http://graylog:9000/api/system/inputs"
+        else
+          echo Not creating
+          echo $INPUTS
         fi
   
   elasticsearch:
