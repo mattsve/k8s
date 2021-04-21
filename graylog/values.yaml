@@ -45,7 +45,7 @@ graylog:
         if [ $(echo $INPUTS | grep -c "UDP") != "1" ]; then
             echo "Creating inputs"
             echo $INPUTS 
-            curl -s -X POST -H "Content-Type: application/json" -h "X-Requested-By: provisioner" -d "${SYSLOG_UDP}" --user "admin:${GRAYLOG_PASSWORD_SECRET}" "http://graylog:9000/api/system/inputs"
+            curl -s -X POST -H "Content-Type: application/json" -H "X-Requested-By: provisioner" -d "${SYSLOG_UDP}" --user "admin:${GRAYLOG_PASSWORD_SECRET}" "http://graylog:9000/api/system/inputs"
             echo "Last error code $?"
         else
           echo "Not creating"
