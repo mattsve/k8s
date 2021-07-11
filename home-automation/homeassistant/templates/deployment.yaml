@@ -55,7 +55,7 @@ spec:
             - /data
       containers:
         - name: homeassistant
-          image: homeassistant/home-assistant:2021.3.4
+          image: homeassistant/home-assistant:2021.7.1
           imagePullPolicy: IfNotPresent
           env:
             - name: TZ
