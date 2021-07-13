@@ -30,7 +30,10 @@ spec:
               mountPath: /data
             - name: ssh-secrets
               mountPath: /root/.ssh
-              readOnly: true            
+              readOnly: true
+            - name: patch
+              mountPath: /usr/src/homeassistant/homeassistant/auth/providers/trusted_networks.py
+              subPath: trusted_networks.py
           env:
             - name: TZ
               value: Europe/Stockholm
@@ -81,9 +84,6 @@ spec:
           volumeMounts:
             - name: config
               mountPath: /config
-            - name: patch
-              mountPath: /usr/src/homeassistant/homeassistant/auth/providers/trusted_networks.py
-              subPath: trusted_networks.py
           ports:
             - containerPort: 139
               protocol: TCP
