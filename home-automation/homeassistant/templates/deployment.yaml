@@ -31,6 +31,9 @@ spec:
             - name: ssh-secrets
               mountPath: /root/.ssh
               readOnly: true
+            - name: patch
+              mountPath: /usr/src/homeassistant/homeassistant/auth/providers/trusted_networks.py
+              subPath: trusted_networks.py
           env:
             - name: TZ
               value: Europe/Stockholm
@@ -144,3 +147,6 @@ spec:
               - key: crontab
                 mode: 0644
                 path: crontab
+        - name: patch
+          configMap:
+            name: homeassistant-trusted-networks
