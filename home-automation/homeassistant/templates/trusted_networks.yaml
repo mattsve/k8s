@@ -20,6 +20,7 @@ data:
         ip_address,
         ip_network,
     )
+    import logging
     from typing import Any, Dict, List, Union, cast
 
     import voluptuous as vol
