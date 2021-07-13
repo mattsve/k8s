@@ -63,6 +63,9 @@ spec:
           volumeMounts:
             - name: config
               mountPath: /config
+            - name: patch
+              mountPath: /usr/src/homeassistant/homeassistant/auth/providers/trusted_networks.py
+              subPath: trusted_networks.py
           ports:
             - containerPort: 8123
               name: http
@@ -80,10 +83,7 @@ spec:
                   key: smb-user
           volumeMounts:
             - name: config
-              mountPath: /config
-            - name: patch
-              mountPath: /usr/src/homeassistant/homeassistant/auth/providers/trusted_networks.py
-              subPath: trusted_networks.py
+              mountPath: /config            
           ports:
             - containerPort: 139
               protocol: TCP
