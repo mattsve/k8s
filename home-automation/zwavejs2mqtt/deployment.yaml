@@ -31,7 +31,7 @@ spec:
             - gomplate -d secrets=/secrets < /templates/settings.json.tmpl > /store/settings.json && cp -f /config/nodes.json /store/nodes.json
       containers:
         - name: zwavejs2mqtt
-          image: zwavejs/zwavejs2mqtt:5.5.3
+          image: zwavejs/zwavejs2mqtt:5.8.0
           livenessProbe:
             failureThreshold: 12
             httpGet:
