@@ -8,4 +8,4 @@ spec:
       port: 80
       targetPort: http
   selector:
-    name: zigbee2mqtt
+    app: zigbee2mqtt
