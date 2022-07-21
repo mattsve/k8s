@@ -1,0 +1,2 @@
+# m h dom mon dow command
+0 3 * * * /scripts/backup.sh -l -r '{{ (ds "secrets" "borg-repo") }}' -p '{{ (ds "secrets" "borg-passphrase") }}' -a zigbee2mqtt /data

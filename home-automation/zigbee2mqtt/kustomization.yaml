@@ -1,0 +1,17 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: home-automation
+
+resources:
+  - deployment.yaml
+  - service.yaml
+  - secret.yaml
+  
+configMapGenerator:
+  - name: zigbee2mqtt-backup-templates
+    files:
+      - crontab.tmpl
+    options:
+      labels:
+        app.kubernetes.io/name: zigbee2mqtt

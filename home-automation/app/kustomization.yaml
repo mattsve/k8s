@@ -4,7 +4,7 @@ kind: Kustomization
 resources:
     - base/namespace.yaml
     - base/rfxtrx2mqtt.yaml    
-    - base/deconz.yaml
+    - base/zigbee2mqtt.yaml
     - base/node-red.yaml
     - base/zwavejs2mqtt.yaml
     - base/homeassistant.yaml

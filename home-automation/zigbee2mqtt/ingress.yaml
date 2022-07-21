@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: zigbee2mqtt-http-ingress
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    traefik.ingress.kubernetes.io/redirect-entry-point: https
+spec:
+  rules:
+  - http:
+      paths:
+      - backend:
+          serviceName: zigbee2mqtt
+          servicePort: http
+    host: zigbee2mqtt.k3s.ingenstans.se
+  tls:
+    - hosts:
+      - zigbee2mqtt.k3s.ingenstans.se
+      secretName: zigbee2mqtt-http-ingress-cert
