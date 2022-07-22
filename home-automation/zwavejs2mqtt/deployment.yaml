@@ -15,20 +15,52 @@ spec:
         name: zwavejs2mqtt
     spec:
       initContainers:
+        - name: init-borg
+          image: ghcr.io/mattsve/borgmatic:0.5
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - name: store
+              mountPath: /data
+            - name: secrets
+              mountPath: /root/.ssh
+              readOnly: true
+          env:
+            - name: TZ
+              value: Europe/Stockholm
+            - name: REPOSITORY
+              valueFrom:
+                secretKeyRef:
+                  name: zwavejs2mqtt
+                  key: borg-repo
+            - name: PASSPHRASE
+              valueFrom:
+                secretKeyRef:
+                  name: zwavejs2mqtt
+                  key: borg-passphrase
+          args:
+            - restore
+            - -r
+            - "'$(REPOSITORY)'"
+            - -p 
+            - "'$(PASSPHRASE)'"
+            - -a 
+            - zwavejs2mqtt
+            - /data
         - name: inject-secrets
           image: hairyhenderson/gomplate:v3.9.0-alpine
           volumeMounts:
-            - name: secrets
-              mountPath: /secrets
-            - name: config
+            - name: backup-templates
               mountPath: /templates
-            - name: store
-              mountPath: /store
-            - name: config
+            - name: backup-config
               mountPath: /config
+            - name: backup-secrets
+              mountPath: /secrets
+          env:
+            - name: TZ
+              value: Europe/Stockholm
           command: ["sh", "-c"]
           args:
-            - gomplate -d secrets=/secrets < /templates/settings.json.tmpl > /store/settings.json && cp -f /config/nodes.json /store/nodes.json
+            - gomplate -d secrets=/secrets < /templates/crontab.tmpl > /config/crontab
       containers:
         - name: zwavejs2mqtt
           image: zwavejs/zwavejs2mqtt:6.13.0
@@ -65,6 +97,23 @@ spec:
               name: store            
             - mountPath: /config
               name: config
+        - name: cron-borg
+          image: ghcr.io/mattsve/borgmatic:0.5
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - name: store
+              mountPath: /data
+            - name: backup-config
+              mountPath: /config
+            - name: secrets
+              mountPath: /root/.ssh
+              readOnly: true
+          env:
+            - name: TZ
+              value: Europe/Stockholm
+          args:
+            - cron
+            - /config/crontab
       nodeSelector:
         zwavejs: "true"
       tolerations:
@@ -85,3 +134,31 @@ spec:
         - name: store
           persistentVolumeClaim:
             claimName: zwavejs2mqtt
+        - name: backup-config
+          emptyDir: {}  
+        - name: backup-templates
+          configMap:
+            name: zwavejs2mqtt-backup-templates
+        - name: secrets
+          secret:
+            secretName: zwavejs2mqtt
+            items:
+              - key: id_ed25519
+                mode: 0600
+                path: id_ed25519
+              - key: id_ed25519.pub
+                mode: 0644
+                path: id_ed25519.pub
+              - key: known_hosts
+                mode: 0644
+                path: known_hosts
+        - name: backup-secrets
+          secret:
+            secretName: zwavejs2mqtt
+            items:
+              - key: borg-repo
+                mode: 0400
+                path: borg-repo
+              - key: borg-passphrase
+                mode: 0400
+                path: borg-passphrase

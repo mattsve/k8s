@@ -11,12 +11,9 @@ resources:
   - pvc.yaml
 
 configMapGenerator:
-  - name: zwavejs2mqtt
+  - name: zwavejs2mqtt-backup-templates
     files:
-      - settings.json.tmpl
-      - nodes.json
+      - crontab.tmpl
     options:
       labels:
-        app.kubernetes.io/name: zwavejs
-generatorOptions:
-    disableNameSuffixHash: true
+        app.kubernetes.io/name: zwavejs2mqtt
