@@ -3,5 +3,5 @@ name: graylog-wrapper
 version: '1.0'
 dependencies:
     - name: graylog
-      version: 1.7.8
+      version: 2.1.6
       repository: https://charts.kong-z.com/
