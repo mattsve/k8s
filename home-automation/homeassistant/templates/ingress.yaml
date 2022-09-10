@@ -9,7 +9,8 @@ spec:
   rules:
   - http:
       paths:
-      - backend:
+      - pathType: Prefix
+        backend:
           service:
             name: homeassistant
             port:

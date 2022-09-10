@@ -10,7 +10,8 @@ spec:
   rules:
   - http:
       paths:
-      - backend:
+      - pathType: Prefix
+        backend:
           service:
             name: argocd-server
             port: 

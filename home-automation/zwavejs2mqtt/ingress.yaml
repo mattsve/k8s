@@ -9,9 +9,12 @@ spec:
   rules:
   - http:
       paths:
-      - backend:
-          serviceName: zwavejs2mqtt
-          servicePort: http
+      - pathType: Prefix
+        backend:
+          service:
+            name: zwavejs2mqtt
+            port:
+              name: http
     host: zwavejs2mqtt.k3s.ingenstans.se
   tls:
     - hosts:
