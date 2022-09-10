@@ -1,4 +1,4 @@
-#!/usr/bin/node
+#!/usr/local/bin/node
 const https = require('https');
 
 signIn = function (username, password) {
