@@ -10,8 +10,10 @@ spec:
   - http:
       paths:
       - backend:
-          serviceName: node-red
-          servicePort: http
+          service:
+            name: node-red
+            port: 
+              name: http
     host: node-red.k3s.ingenstans.se
   tls:
     - hosts:

@@ -11,8 +11,10 @@ spec:
   - http:
       paths:
       - backend:
-          serviceName: argocd-server
-          servicePort: http
+          service:
+            name: argocd-server
+            port: 
+              name: http
     host: argocd.k3s.ingenstans.se
   tls:
     - hosts:

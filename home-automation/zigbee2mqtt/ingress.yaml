@@ -10,8 +10,10 @@ spec:
   - http:
       paths:
       - backend:
-          serviceName: zigbee2mqtt
-          servicePort: http
+          service:
+            name: zigbee2mqtt
+            port: 
+              name: http
     host: zigbee2mqtt.k3s.ingenstans.se
   tls:
     - hosts:

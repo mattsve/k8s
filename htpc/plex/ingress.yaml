@@ -10,8 +10,10 @@ spec:
   - http:
       paths:
       - backend:
-          serviceName: plex
-          servicePort: mediaserver
+          service:
+            name: plex
+            port: 
+              name: mediaserver
     host: plex.k3s.ingenstans.se
   tls:
     - hosts:
