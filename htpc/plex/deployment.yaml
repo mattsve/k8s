@@ -71,7 +71,7 @@ spec:
                   key: password
           command: ["sh", "-c"]
           args:
-            - ls /config/claimToken || /scripts/getClaimToken.js "${USERNAME}" "${PASSWORD}" > /config/claimToken
+            - ls /scripts && ls /config/claimToken || /scripts/getClaimToken.js "${USERNAME}" "${PASSWORD}" > /config/claimToken
       containers:
         - name: plex
           image: plexinc/pms-docker:1.21.4.4079-1b7748a7b
