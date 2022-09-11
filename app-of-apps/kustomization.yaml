@@ -12,3 +12,4 @@ resources:
     - base/support.yaml
     - base/htpc.yaml
     - base/graylog.yaml
+    - base/logs.yaml

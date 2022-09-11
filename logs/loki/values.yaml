@@ -1,0 +1,15 @@
+loki:
+  commonConfig:
+    replication_factor: 1
+  storage:
+    type: 'filesystem'
+  singleBinary:
+      persistence:
+        storageClass: openebs-hostpath
+  ingress:
+    enabled: true
+    hosts:
+      - loki.k3s.ingenstans.se
+    annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+        traefik.ingress.kubernetes.io/redirect-entry-point: https
