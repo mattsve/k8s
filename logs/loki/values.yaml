@@ -9,7 +9,7 @@ loki:
       persistence:
         storageClass: openebs-hostpath
   ingress:
-    enabled: true
+    enabled: false
     hosts:
       - loki.k3s.ingenstans.se
     tls:
