@@ -19,3 +19,16 @@ loki:
     annotations:
         cert-manager.io/cluster-issuer: letsencrypt-prod
         traefik.ingress.kubernetes.io/redirect-entry-point: https
+    paths:
+      write: []
+      read: []
+      headless:
+        - /api/prom/push
+        - /loki/api/v1/push
+        - /api/prom/tail
+        - /loki/api/v1/tail
+        - /loki/api
+        - /api/prom/rules
+        - /loki/api/v1/rules
+        - /prometheus/api/v1/rules
+        - /prometheus/api/v1/alerts
