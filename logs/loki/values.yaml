@@ -11,6 +11,11 @@ loki:
     enabled: true
     hosts:
       - loki.k3s.ingenstans.se
+    tls:
+      - hosts:
+          - loki.k3s.ingenstans.se
+        secretName:
+          loki-ingress-cert
     annotations:
         cert-manager.io/cluster-issuer: letsencrypt-prod
         traefik.ingress.kubernetes.io/redirect-entry-point: https
