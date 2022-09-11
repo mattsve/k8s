@@ -1,0 +1,24 @@
+grafana:
+  admin:
+    existingSecret: grafana
+  ingress:
+    enabled: true
+    annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+        traefik.ingress.kubernetes.io/redirect-entry-point: https
+    hosts:
+      - grafana.k3s.ingenstans.se
+    tls:
+      - hosts:
+          - grafana.k3s.ingenstans.se
+        secretName: grafana-ingress-cert
+  sidecar:
+    dashboards:
+      enabled: true
+      searchNamespace: ALL
+    datasources:
+      enabled: true
+      searchNamespace: ALL
+    notifiers:
+      enabled: true
+      searchNamespace: ALL
