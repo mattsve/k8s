@@ -4,13 +4,13 @@ promtail:
       name: udp-syslog
       containerPort: 5140
       protocol: UDP
+      annotations:
+        external-dns.alpha.kubernetes.io/hostname: logs.k3s.ingenstans.se.
+        metallb.universe.tf/address-pool: default
       service:
         port: 5140
         type: LoadBalancer
         externalTrafficPolicy: Local
-        annotations:
-            external-dns.alpha.kubernetes.io/hostname: logs.k3s.ingenstans.se.
-            metallb.universe.tf/address-pool: default
 
   config:
     clients:
