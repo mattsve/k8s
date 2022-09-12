@@ -14,7 +14,7 @@ promtail:
 
   config:
     clients:
-      - url: http://loki/loki/app/v1/push
+      - url: http://loki:3100/loki/app/v1/push
     snippets:
       extraScrapeConfigs: |
         # Add an additional scrape config for syslog
