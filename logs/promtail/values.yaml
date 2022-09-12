@@ -13,6 +13,8 @@ promtail:
             metallb.universe.tf/address-pool: default
 
   config:
+    clients:
+      - url: http://loki/loki/app/v1/push
     snippets:
       extraScrapeConfigs: |
         # Add an additional scrape config for syslog
