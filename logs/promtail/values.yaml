@@ -1,4 +1,9 @@
 promtail:
+  tolerations:
+  - effect: NoSchedule
+    key: node
+    operator: Exists
+    
   extraPorts:
     syslog:
       name: udp-syslog
