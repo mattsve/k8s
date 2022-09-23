@@ -1,7 +1,7 @@
 coredns:
     serviceType: LoadBalancer
     service:
-        loadBalancerIP: 10.0.1.255
+        loadBalancerIP: 10.0.2.1
         annotations:
             metallb.universe.tf/allow-shared-ip: coredns
     isClusterService: false

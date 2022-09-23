@@ -11,4 +11,4 @@ spec:
       targetPort: 32400
       name: mediaserver
   type: LoadBalancer
-  loadBalancerIP: 10.30.1.254
+  loadBalancerIP: 10.0.26.1
