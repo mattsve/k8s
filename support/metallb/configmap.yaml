@@ -9,8 +9,8 @@ data:
     - name: default
       protocol: layer2
       addresses:
-      - 10.0.2.10 - 10.0.2.255
+      - 10.0.2.1 - 10.0.2.255
     - name: iot
       protocol: layer2
       addresses:
-      - 10.0.26.10 - 10.0.26.255
+      - 10.0.26.1 - 10.0.26.255
