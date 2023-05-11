@@ -1,1 +1,3 @@
 *.secret
+1password-credentials.json
+k8s-token.txt

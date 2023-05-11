@@ -1,0 +1,8 @@
+connect:
+  connect:
+    serviceType: LoadBalancer
+
+  operator:
+    create: true
+    token:
+      name: op-credentials
