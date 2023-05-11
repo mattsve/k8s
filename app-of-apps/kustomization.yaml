@@ -13,3 +13,4 @@ resources:
     - base/htpc.yaml
     - base/logs.yaml
     - base/grafana.yaml
+    - base/1password.yaml
