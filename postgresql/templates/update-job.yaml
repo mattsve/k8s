@@ -1,0 +1,41 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: update-job
+  annotations:
+    "helm.sh/hook": post-install, post-upgrade    
+    "helm.sh/hook-delete-policy": before-hook-creation
+spec:
+  template:
+    metadata:
+      name: update-job
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: post-upgrade-job-setup-postgresql
+          image: postgres:15.3-alpine
+          volumeMounts:
+            - name: auth
+              mountPath: /catalog
+              readOnly: true
+            - name: scripts
+              mountPath: /scripts
+              readOnly: true
+          env:
+            - name: TZ
+              value: Europe/Stockholm
+            - name: password
+              valueFrom:
+                secretKeyRef:
+                  name: auth
+                  key: postgres-password
+          command: ["/bin/sh"]
+          args: ["-c", "/scripts/updateConfiguration.sh"]          
+      volumes:
+        - name: auth
+          secret:
+            secretName: auth
+        - name: scripts
+          configMap:
+            name: scripts
+            defaultMode: 0777
