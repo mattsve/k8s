@@ -24,7 +24,7 @@ spec:
           env:
             - name: TZ
               value: Europe/Stockholm
-            - name: password
+            - name: PGPASSWORD
               valueFrom:
                 secretKeyRef:
                   name: auth
