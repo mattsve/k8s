@@ -1,0 +1,8 @@
+postgresql:
+  auth:
+    existingSecret: auth
+  
+  primary:
+    persistence:
+      storageClass: openebs-hostpath
+      
