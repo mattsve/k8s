@@ -14,3 +14,4 @@ resources:
     - base/logs.yaml
     - base/grafana.yaml
     - base/1password.yaml
+    - base/postgresql.yaml
