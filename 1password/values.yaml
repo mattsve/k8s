@@ -1,6 +1,6 @@
 connect:
   connect:
-    serviceType: LoadBalancer
+    serviceType: ClusterIP
 
   operator:
     create: true
