@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: postgresql-scripts
+  name: scripts
 data:  
   updateConfiguration.sh: |
     #!/bin/bash
