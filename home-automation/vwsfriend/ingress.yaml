@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: vwsfriend-http-ingress
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    traefik.ingress.kubernetes.io/redirect-entry-point: https
+spec:
+  rules:
+  - http:
+      paths:
+      - pathType: Prefix
+        path: '/'
+        backend:
+          service:
+            name: vwsfriend
+            port:
+              name: http
+    host: vwsfriend.k3s.ingenstans.se
+  tls:
+    - hosts:
+      - vwsfriend.k3s.ingenstans.se
+      secretName: vwsfriend-http-ingress-cert

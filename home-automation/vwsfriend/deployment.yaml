@@ -1,0 +1,76 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vwsfriend
+  labels:
+    app: vwsfriend
+    app.kubernetes.io/name: vwsfriend
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: vwsfriend
+  template:
+    metadata:
+      labels:
+        app: vwsfriend
+        app.kubernetes.io/name: vwsfriend
+    spec:
+      containers:
+        - name: vwsfriend
+          image: tillsteinbach/vwsfriend:0.23.10
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            httpGet:
+              path: /healthcheck
+              port: http
+            initialDelaySeconds: 60
+            periodSeconds: 60
+            timeoutSeconds: 3
+            failureThreshold: 1
+          ports:
+            - containerPort: 4000
+              name: http
+          volumeMounts:
+            - name: config
+              mountPath: /config
+          env:
+            - name: TZ
+              value: Europe/Stockholm
+            - name: VWSFRIEND_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: vwsfriend
+                  key: username
+            - name: VWSFRIEND_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: vwsfriend
+                  key: password
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: vwsfriend
+                  key: connection-string
+            - name: ADDITIONAL_PARAMETERS
+              value: --with-database -vv
+            - name: VWSFRIEND_PORT
+              value: 4000
+            - name: WECONNECT_USER
+              valueFrom:
+                secretKeyRef:
+                  name: weconnect
+                  key: username
+            - name: WECONNECT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: weconnect
+                  key: password
+            - name: WECONNECT_INTERVAL
+              value: 180 
+      volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: vwsfriend-config
