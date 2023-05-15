@@ -33,6 +33,7 @@ spec:
           ports:
             - containerPort: 4000
               name: http
+              protocol: TCP
           volumeMounts:
             - name: config
               mountPath: /config
