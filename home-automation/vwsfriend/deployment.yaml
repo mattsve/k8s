@@ -56,7 +56,7 @@ spec:
                   name: vwsfriend
                   key: connection-string
             - name: ADDITIONAL_PARAMETERS
-              value: --with-database -vv --mqttbroker mqtt.mosquitto --prefix weconnect --picture-format png
+              value: --with-database --with-abrp -vv --mqttbroker mqtt.mosquitto --prefix weconnect --picture-format png
             - name: VWSFRIEND_PORT
               value: '4000'
             - name: WECONNECT_USER
