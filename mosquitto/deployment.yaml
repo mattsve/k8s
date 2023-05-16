@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: mosquitto
-          image: eclipse-mosquitto:1.6.12
+          image: eclipse-mosquitto:2.0.15
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 1883
@@ -34,6 +34,8 @@ spec:
             - name: config
               mountPath: /mosquitto/config/mosquitto.conf
               subPath: mosquitto.conf
+            - name: data
+              mountPath: /mosquitto/data
             - name: tls
               mountPath: /tls
               readOnly: true
@@ -44,4 +46,7 @@ spec:
         - name: tls
           secret:
             secretName: mqtt-k3s-ingenstans-se-tls
+        - name: data
+          persistentVolumeClaim:
+            claimName: mosquitto-data
 
