@@ -70,7 +70,7 @@ spec:
                   name: weconnect
                   key: password
             - name: WECONNECT_INTERVAL
-              value: '180' 
+              value: '300' 
       volumes:
         - name: config
           persistentVolumeClaim:
