@@ -5,8 +5,8 @@ namespace: home-automation
 
 resources:
   - deployment.yaml
-  - vwsfriend-onepassword.yaml
-  - weconnect-onepassword.yaml
+  - vwsfriend-externalsecrets.yaml
+  - weconnect-externalsecrets.yaml
   - ingress.yaml
   - service.yaml
   - pvc.yaml
