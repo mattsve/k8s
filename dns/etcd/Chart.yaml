@@ -4,5 +4,5 @@ version: '1.0'
 
 dependencies:
     - name: etcd
-      version: 8.4.5
+      version: 9.5.0
       repository: https://charts.bitnami.com/bitnami

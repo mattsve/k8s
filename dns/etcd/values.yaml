@@ -1,6 +1,7 @@
 etcd:
     auth:
         token:
+            type: simple
             enabled: false
         rbac:
             allowNoneAuthentication: true
