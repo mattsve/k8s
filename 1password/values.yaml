@@ -3,6 +3,4 @@ connect:
     serviceType: ClusterIP
 
   operator:
-    create: true
-    token:
-      name: op-credentials
+    create: false
