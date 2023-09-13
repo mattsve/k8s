@@ -5,4 +5,9 @@ postgresql:
   primary:
     persistence:
       storageClass: openebs-hostpath
-      
+
+  backup:
+    enabled: true
+    cronjob:
+      storage:
+        existingClaim: postgresql-backup
