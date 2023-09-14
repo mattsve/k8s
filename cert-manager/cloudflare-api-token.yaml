@@ -9,7 +9,7 @@ spec:
   target:
     creationPolicy: Owner
   data:
-    secretKey: api-token
+  - secretKey: api-token
     remoteRef:
       key: cert-manager
       property: cloudflare-token
