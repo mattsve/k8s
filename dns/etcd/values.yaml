@@ -7,6 +7,5 @@ etcd:
             allowNoneAuthentication: true
             create: false
             enabled: false
-            existingSecret: etcd
     persistence:
         enabled: false
