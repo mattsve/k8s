@@ -25,7 +25,6 @@ configMapGenerator:
       labels:
         grafana_dashboard: "1"
 
-configMapGenerator:
   - name: vwsfriend-dashboards-1
     files:
       - grafana/dashboards/VWsFriend/charges.json
@@ -39,7 +38,6 @@ configMapGenerator:
       labels:
         grafana_dashboard: "1"
 
-configMapGenerator:
   - name: vwsfriend-dashboards-2
     files:
       - grafana/dashboards/VWsFriend/maintenance.json
