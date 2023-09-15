@@ -13,13 +13,20 @@ resources:
   - pvc.yaml
 
 configMapGenerator:
-  - name: vwsfriend-dashboards
+  - name: vwsfriend-dashboards-internal
     files:
       - grafana/dashboards/Internal/aggregated_trip_details.json
       - grafana/dashboards/Internal/charge_session.json
       - grafana/dashboards/Internal/refuel_session.json
       - grafana/dashboards/Internal/server_statistics.json
       - grafana/dashboards/Internal/trip_details.json
+    options:
+      labels:
+        grafana_dashboard: "1"
+
+configMapGenerator:
+  - name: vwsfriend-dashboards
+    files:
       - grafana/dashboards/VWsFriend/charges.json
       - grafana/dashboards/VWsFriend/charging_statistics.json
       - grafana/dashboards/VWsFriend/journey.json
