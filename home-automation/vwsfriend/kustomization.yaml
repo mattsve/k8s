@@ -21,11 +21,12 @@ configMapGenerator:
       - grafana/dashboards/Internal/server_statistics.json
       - grafana/dashboards/Internal/trip_details.json
     options:
+      disableNameSuffixHash: true
       labels:
         grafana_dashboard: "1"
 
 configMapGenerator:
-  - name: vwsfriend-dashboards
+  - name: vwsfriend-dashboards-1
     files:
       - grafana/dashboards/VWsFriend/charges.json
       - grafana/dashboards/VWsFriend/charging_statistics.json
@@ -33,6 +34,14 @@ configMapGenerator:
       - grafana/dashboards/VWsFriend/journeys.json
       - grafana/dashboards/VWsFriend/live.json
       - grafana/dashboards/VWsFriend/locations.json
+    options:
+      disableNameSuffixHash: true
+      labels:
+        grafana_dashboard: "1"
+
+configMapGenerator:
+  - name: vwsfriend-dashboards-2
+    files:
       - grafana/dashboards/VWsFriend/maintenance.json
       - grafana/dashboards/VWsFriend/mileage.json
       - grafana/dashboards/VWsFriend/overview.json
@@ -41,5 +50,6 @@ configMapGenerator:
       - grafana/dashboards/VWsFriend/trips.json
       - grafana/dashboards/VWsFriend/visited.json
     options:
+      disableNameSuffixHash: true
       labels:
         grafana_dashboard: "1"
