@@ -20,7 +20,7 @@ data:
         echo "SELECT 'CREATE DATABASE $l' WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = '$l')\gexec" | psql -h postgresql -U postgres
         echo "GRANT ALL PRIVILEGES ON DATABASE $l TO $user" | psql -h postgresql -U postgres
         echo "GRANT ALL ON SCHEMA public TO $user" | psql -h postgresql -U postgres -d $l
-        echo "create extension if not exists cube; create extension if not exists earthdistance;" | psql -h postgresql -U postgres -d $1
+        echo "create extension if not exists cube; create extension if not exists earthdistance;" | psql -h postgresql -U postgres -d $l
       done < $f
     done
 
