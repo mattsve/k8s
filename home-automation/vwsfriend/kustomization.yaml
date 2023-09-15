@@ -7,6 +7,7 @@ resources:
   - deployment.yaml
   - vwsfriend-externalsecrets.yaml
   - weconnect-externalsecrets.yaml
+  - vwsfriend-datasource-externalsecrets.yaml
   - ingress.yaml
   - service.yaml
   - pvc.yaml
