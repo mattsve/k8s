@@ -15,11 +15,11 @@ resources:
 configMapGenerator:
   - name: vwsfriend-dashboards
     files:
-      - grafana/dashboards/internal/aggregated_trip_details.json
-      - grafana/dashboards/internal/charge_session.json
-      - grafana/dashboards/internal/refuel_session.json
-      - grafana/dashboards/internal/server_statistics.json
-      - grafana/dashboards/internal/trip_details.json
+      - grafana/dashboards/Internal/aggregated_trip_details.json
+      - grafana/dashboards/Internal/charge_session.json
+      - grafana/dashboards/Internal/refuel_session.json
+      - grafana/dashboards/Internal/server_statistics.json
+      - grafana/dashboards/Internal/trip_details.json
       - grafana/dashboards/VWsFriend/charges.json
       - grafana/dashboards/VWsFriend/charging_statistics.json
       - grafana/dashboards/VWsFriend/journey.json
