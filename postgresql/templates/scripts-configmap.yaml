@@ -23,4 +23,6 @@ data:
       done < $f
     done
 
+echo "create extension if not exists cube; create extension if not exists earthdistance;" | psql -h postgresql -U postgres
+
 
