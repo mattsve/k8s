@@ -3,6 +3,7 @@ grafana:
     existingSecret: grafana
   plugins:
     - marcusolsson-json-datasource
+    - gapit-htmlgraphics-panel
   ingress:
     enabled: true
     annotations:
