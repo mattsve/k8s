@@ -11,3 +11,28 @@ resources:
   - ingress.yaml
   - service.yaml
   - pvc.yaml
+
+configMapGenerator:
+  - name: vwsfriend-dashboards
+    files:
+      - grafana/dashboards/internal/aggregated_trip_details.json
+      - grafana/dashboards/internal/charge_session.json
+      - grafana/dashboards/internal/refuel_session.json
+      - grafana/dashboards/internal/server_statistics.json
+      - grafana/dashboards/internal/trip_details.json
+      - grafana/dashboards/VWsFriend/charges.json
+      - grafana/dashboards/VWsFriend/charging_statistics.json
+      - grafana/dashboards/VWsFriend/journey.json
+      - grafana/dashboards/VWsFriend/journeys.json
+      - grafana/dashboards/VWsFriend/live.json
+      - grafana/dashboards/VWsFriend/locations.json
+      - grafana/dashboards/VWsFriend/maintenance.json
+      - grafana/dashboards/VWsFriend/mileage.json
+      - grafana/dashboards/VWsFriend/overview.json
+      - grafana/dashboards/VWsFriend/refueling.json
+      - grafana/dashboards/VWsFriend/statistics.json
+      - grafana/dashboards/VWsFriend/trips.json
+      - grafana/dashboards/VWsFriend/visited.json
+    options:
+      labels:
+        grafana_dashboard: "1"
