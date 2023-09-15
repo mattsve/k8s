@@ -1,6 +1,8 @@
 grafana:
   admin:
     existingSecret: grafana
+  plugins:
+    - marcusolsson-json-datasource
   ingress:
     enabled: true
     annotations:
