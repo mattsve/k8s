@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: vwsfriend
-          image: tillsteinbach/vwsfriend:0.23.11
+          image: tillsteinbach/vwsfriend:0.24.0
           imagePullPolicy: IfNotPresent
           livenessProbe:
             httpGet:
