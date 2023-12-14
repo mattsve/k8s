@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: esphome
+  labels:
+    app: esphome
+    app.kubernetes.io/name: esphome
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: esphome
+  template:
+    metadata:
+      labels:
+        app: esphome
+        app.kubernetes.io/name: esphome 
+    spec:
+      hostNetwork: true
+      containers:
+        - name: esphome
+          image: ghcr.io/esphome/esphome:2023.11.6
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: TZ
+              value: Europe/Stockholm
+          volumeMounts:
+            - name: config
+              mountPath: /config      
+          ports:
+            - containerPort: 6502
+              name: http
+              protocol: TCP
+      volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: esphome
