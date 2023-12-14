@@ -19,6 +19,53 @@ spec:
         app.kubernetes.io/name: esphome 
     spec:
       hostNetwork: true
+      initContainers:
+        - name: init-borg
+          image: ghcr.io/mattsve/borgmatic:0.5
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - name: config
+              mountPath: /data
+            - name: ssh-secrets
+              mountPath: /root/.ssh
+              readOnly: true
+          env:
+            - name: TZ
+              value: Europe/Stockholm
+            - name: REPOSITORY
+              valueFrom:
+                secretKeyRef:
+                  name: esphome
+                  key: borg-repo
+            - name: PASSPHRASE
+              valueFrom:
+                secretKeyRef:
+                  name: esphome
+                  key: borg-passphrase
+          args:
+            - restore
+            - -r
+            - "'$(REPOSITORY)'"
+            - -p 
+            - "'$(PASSPHRASE)'"
+            - -a 
+            - esphome
+            - /data
+        - name: inject-secrets
+          image: hairyhenderson/gomplate:v3.8.0-alpine
+          volumeMounts:
+            - name: backup-templates
+              mountPath: /templates
+            - name: backup-config
+              mountPath: /config
+            - name: backup-secrets
+              mountPath: /secrets
+          env:
+            - name: TZ
+              value: Europe/Stockholm
+          command: ["sh", "-c"]
+          args:
+            - gomplate -d secrets=/secrets < /templates/borg-backup.sh.tmpl > /config/borg-backup.sh && cp /templates/crontab /config/crontab && chmod +x /config/borg-backup.sh
       containers:
         - name: esphome
           image: ghcr.io/esphome/esphome:2023.11.6
@@ -33,7 +80,50 @@ spec:
             - containerPort: 6502
               name: http
               protocol: TCP
+        - name: cron-borg
+          image: ghcr.io/mattsve/borgmatic:0.5
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - name: config
+              mountPath: /data
+            - name: backup-config
+              mountPath: /config
+            - name: ssh-secrets
+              mountPath: /root/.ssh
+              readOnly: true
+          env:
+            - name: TZ
+              value: Europe/Stockholm
+          args:
+            - cron
+            - /config/crontab
       volumes:
         - name: config
           persistentVolumeClaim:
             claimName: esphome
+        - name: ssh-secrets
+          secret:
+            secretName: esphome
+            items:
+              - key: id_ed25519
+                mode: 0600
+                path: id_ed25519
+              - key: id_ed25519.pub
+                mode: 0644
+                path: id_ed25519.pub
+        - name: backup-config
+          emptyDir: {}
+        - name: backup-templates
+          configMap:
+            name: esphome-backup-templates
+        - name: backup-secrets
+          secret:
+            secretName: esphome
+            items:
+              - key: borg-repo
+                mode: 0400
+                path: borg-repo
+              - key: borg-passphrase
+                mode: 0400
+                path: borg-passphrase
+

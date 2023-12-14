@@ -1,0 +1,2 @@
+#!/bin/bash
+/scripts/backup.sh -l -r '{{ (ds "secrets" "borg-repo") }}' -p '{{ (ds "secrets" "borg-passphrase") }}' -a esphome /data

@@ -9,3 +9,12 @@ resources:
   - ingress.yaml
   - pvc.yaml
   - esphome-externalsecrets.yaml
+
+  configMapGenerator:
+  - name: esphome-backup-templates
+    files:
+      - crontab
+      - borg-backup.sh.tmpl
+    options:
+      labels:
+        app.kubernetes.io/name: esphome
