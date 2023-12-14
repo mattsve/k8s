@@ -10,7 +10,7 @@ resources:
   - pvc.yaml
   - esphome-externalsecrets.yaml
 
-  configMapGenerator:
+configMapGenerator:
   - name: esphome-backup-templates
     files:
       - crontab
