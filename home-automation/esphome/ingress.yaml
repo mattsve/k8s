@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: homeassistant
+  name: esphome
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-prod
     traefik.ingress.kubernetes.io/redirect-entry-point: https
@@ -13,11 +13,11 @@ spec:
         path: '/'
         backend:
           service:
-            name: homeassistant
+            name: esphome
             port:
               number: 8123
-    host: ha.k3s.ingenstans.se
+    host: esphome.k3s.ingenstans.se
   tls:
     - hosts:
-      - ha.k3s.ingenstans.se
-      secretName: homeassistant-ingress-cert
+      - esphome.k3s.ingenstans.se
+      secretName: esphome-ingress-cert
