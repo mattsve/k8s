@@ -15,7 +15,7 @@ spec:
           service:
             name: esphome
             port:
-              number: 8123
+              number: 6052
     host: esphome.k3s.ingenstans.se
   tls:
     - hosts:
