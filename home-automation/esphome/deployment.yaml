@@ -111,6 +111,9 @@ spec:
               - key: id_ed25519.pub
                 mode: 0644
                 path: id_ed25519.pub
+              - key: known_hosts
+                mode: 0644
+                path: known_hosts
         - name: backup-config
           emptyDir: {}
         - name: backup-templates
