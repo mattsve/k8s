@@ -98,7 +98,8 @@ spec:
             - /config/crontab
       volumes:
         - name: node-red
-          emptyDir: {}
+          persistentVolumeClaim:
+            claimName: node-red
         - name: backup-config
           emptyDir: {}
         - name: backup-templates

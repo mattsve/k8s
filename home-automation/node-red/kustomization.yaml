@@ -8,6 +8,7 @@ resources:
   - service.yaml
   - secret.yaml
   - ingress.yaml
+  - pvc.yaml
   
 configMapGenerator:
   - name: node-red-backup-templates
