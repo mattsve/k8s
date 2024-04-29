@@ -44,6 +44,13 @@ configMapGenerator:
       - grafana/dashboards/VWsFriend/mileage.json
       - grafana/dashboards/VWsFriend/overview.json
       - grafana/dashboards/VWsFriend/refueling.json
+    options:
+      disableNameSuffixHash: true
+      labels:
+        grafana_dashboard: "1"
+      
+  - name: vwsfriend-dashboards-3
+    files:
       - grafana/dashboards/VWsFriend/statistics.json
       - grafana/dashboards/VWsFriend/trips.json
       - grafana/dashboards/VWsFriend/visited.json
