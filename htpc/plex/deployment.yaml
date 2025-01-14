@@ -74,7 +74,7 @@ spec:
             - ls /config/claimToken || /scripts/getClaimToken.js "${USERNAME}" "${PASSWORD}" > /config/claimToken
       containers:
         - name: plex
-          image: plexinc/pms-docker:1.21.4.4079-1b7748a7b
+          image: plexinc/pms-docker:1.41.3.9314-a0bfb8370
           imagePullPolicy: IfNotPresent
           env:
             - name: TZ
