@@ -55,7 +55,7 @@ spec:
             - /data
       containers:
         - name: homeassistant
-          image: homeassistant/home-assistant:2025.7.4
+          image: homeassistant/home-assistant:2025.9.4
           imagePullPolicy: IfNotPresent
           env:
             - name: TZ
