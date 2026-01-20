@@ -68,7 +68,7 @@ spec:
             - gomplate -d secrets=/secrets < /templates/borg-backup.sh.tmpl > /config/borg-backup.sh && cp /templates/crontab /config/crontab && chmod +x /config/borg-backup.sh
       containers:
         - name: esphome
-          image: ghcr.io/esphome/esphome:2025.2.2
+          image: ghcr.io/esphome/esphome:2025.12.7
           imagePullPolicy: IfNotPresent
           env:
             - name: TZ
