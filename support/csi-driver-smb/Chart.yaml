@@ -3,5 +3,5 @@ name: csi-driver-smb-wrapper
 version: '1.0'
 dependencies:
     - name: csi-driver-smb
-      version: 1.2.0
+      version: 1.19.1
       repository: https://raw.githubusercontent.com/kubernetes-csi/csi-driver-smb/master/charts
