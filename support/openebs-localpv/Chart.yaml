@@ -3,5 +3,5 @@ name: openebs-localpv-wrapper
 version: '1.0'
 dependencies:
     - name: localpv-provisioner
-      version: 2.12.0
+      version: 4.4.0
       repository: https://openebs.github.io/dynamic-localpv-provisioner
