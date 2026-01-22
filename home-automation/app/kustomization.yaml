@@ -8,5 +8,4 @@ resources:
     - base/node-red.yaml
     - base/zwavejs2mqtt.yaml
     - base/homeassistant.yaml
-    - base/vwsfriend.yaml
     - base/esphome.yaml
