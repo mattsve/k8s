@@ -10,6 +10,9 @@ spec:
     app: mosquitto
   ports:
     - protocol: TCP
+      port: 1883
+      name: mqtt
+    - protocol: TCP
       port: 8883
       name: mqtt-tls
     - protocol: TCP

@@ -22,6 +22,8 @@ spec:
           image: eclipse-mosquitto:2.0.22
           imagePullPolicy: IfNotPresent
           ports:
+            - containerPort: 1883
+              name: mqtt
             - containerPort: 8883
               name: mqtt-tls
             - containerPort: 443
