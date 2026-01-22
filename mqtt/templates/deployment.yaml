@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mosquitto
+  labels:
+    app: mosquitto
+    app.kubernetes.io/name: mosquitto
+    reloader.stakater.com/auto: "true"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mosquitto
+  template:
+    metadata:
+      labels:
+        app: mosquitto
+        app.kubernetes.io/name: mosquitto        
+    spec:
+      containers:
+        - name: mosquitto
+          image: eclipse-mosquitto:2.0.22
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8883
+              name: mqtt-tls
+            - containerPort: 443
+              name: websocket-tls
+          volumeMounts:
+            - name: config
+              mountPath: /mosquitto/config/mosquitto.conf
+              subPath: mosquitto.conf
+            - name: data
+              mountPath: /mosquitto/data
+            - name: tls
+              mountPath: /tls
+              readOnly: true
+      volumes:
+        - name: config
+          configMap:
+            name: mosquitto
+        - name: tls
+          secret:
+            secretName: mqtt-k3s-ingenstans-se-tls
+        - name: data
+          persistentVolumeClaim:
+            claimName: mosquitto-data

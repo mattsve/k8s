@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: mqtt
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: mqtt
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: mqtt
+    repoURL: https://github.com/mattsve/k8s
+    targetRevision: HEAD
+

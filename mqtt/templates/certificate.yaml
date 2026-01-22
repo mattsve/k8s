@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: mqtt-k3s-ingenstans-se
+spec:
+  secretName: mqtt-k3s-ingenstans-se-tls
+  dnsNames:
+    - mqtt.k3s.ingenstans.se
+    - mosquitto.k3s.ingenstans.se
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
