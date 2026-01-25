@@ -5,6 +5,9 @@ mqtt:
   broker_host: mqtt.mosquitto
   broker_port: 1883
 
+home_assistant:
+  discovery_prefix: homeassistantold
+  
 sensor_name_map:
   "5202_ed01": "outdoor"
   "5209_b700": "greenhouse"
