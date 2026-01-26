@@ -12,3 +12,4 @@ spec:
       targetPort: ws
   selector:
     name: zwavejs
+  type: LoadBalancer
