@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: zwavejs
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    traefik.ingress.kubernetes.io/redirect-entry-point: https
+spec:
+  rules:
+  - http:
+      paths:
+      - pathType: Prefix
+        path: '/'
+        backend:
+          service:
+            name: zwavejs
+            port:
+              name: http
+    host: zwavejs.k3s.ingenstans.se
+  tls:
+    - hosts:
+      - zwavejs.k3s.ingenstans.se
+      secretName: zwavejs-ingress-cert

@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: zwavejs-ws
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: zwavejs-ws.k3s.ingenstans.se.
+    metallb.universe.tf/address-pool: default
+spec:
+  ports:
+    - name: ws
+      port: 3000
+      targetPort: ws
+  selector:
+    name: zwavejs
