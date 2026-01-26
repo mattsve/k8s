@@ -16,6 +16,13 @@ spec:
             name: zwavejs
             port:
               name: http
+      - pathType: Prefix
+        path: '/ws'
+        backend:
+          service:
+            name: zwavejs
+            port:
+              name: ws
     host: zwavejs.k3s.ingenstans.se
   tls:
     - hosts:
