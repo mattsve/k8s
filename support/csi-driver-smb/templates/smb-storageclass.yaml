@@ -6,6 +6,7 @@ metadata:
 provisioner: smb.csi.k8s.io
 parameters:
   source: //l-space.hem.ingenstans.se/k3s
+  subDir: ${pvc.metadata.namespace}/${pvc.metadata.name}
   csi.storage.k8s.io/provisioner-secret-name: smb
   csi.storage.k8s.io/provisioner-secret-namespace: kube-system
   csi.storage.k8s.io/node-stage-secret-name: smb
