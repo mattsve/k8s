@@ -22,3 +22,6 @@ data:
     - name: kongz
       type: helm
       url: https://charts.kong-z.com/
+    - name: zigbee2mqtt
+      type: helm
+      url: https://charts.zigbee2mqtt.io
