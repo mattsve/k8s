@@ -6,7 +6,5 @@ resources:
     - base/rfxtrx2mqtt.yaml    
     - base/zigbee2mqtt.yaml
     - base/node-red.yaml
-    - base/zwavejs2mqtt.yaml
-    - base/zwavejs.yaml
     - base/homeassistant.yaml
     - base/esphome.yaml
