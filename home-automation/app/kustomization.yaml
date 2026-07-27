@@ -7,4 +7,3 @@ resources:
     - base/zigbee2mqtt.yaml
     - base/node-red.yaml
     - base/homeassistant.yaml
-    - base/esphome.yaml
