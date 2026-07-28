@@ -7,7 +7,6 @@ resources:
     - base/cert-manager.yaml
     - base/mosquitto.yaml
     - base/reloader.yaml
-    - base/home-automation.yaml
     - base/support.yaml
     - base/htpc.yaml
     - base/logs.yaml
