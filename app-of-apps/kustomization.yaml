@@ -14,4 +14,3 @@ resources:
     - base/1password.yaml
     - base/postgresql.yaml
     - base/external-secrets.yaml
-    - base/mqtt.yaml
